@@ -1,9 +1,6 @@
 package com.reyreey.filimo.Model.Content;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.util.Set;
 
@@ -12,25 +9,26 @@ import java.util.Set;
 public class TVSeries extends Content{
 
     private Set<Season> seasons;
-    private int numSeasons;
     private boolean isFinished;
+    private ContentDetail detail;
 
-    @OneToMany(mappedBy = "season")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "c_detail",referencedColumnName = "id")
+    public ContentDetail getDetail() {
+        return detail;
+    }
+
+    public void setDetail(ContentDetail detail) {
+        this.detail = detail;
+    }
+
+    @OneToMany(mappedBy = "tvSeries")
     public Set<Season> getSeasons() {
         return seasons;
     }
 
     public void setSeasons(Set<Season> seasons) {
         this.seasons = seasons;
-    }
-
-    @Column(name = "c_numSeasons")
-    public int getNumSeasons() {
-        return numSeasons;
-    }
-
-    public void setNumSeasons(int numSeasons) {
-        this.numSeasons = numSeasons;
     }
 
     @Column(name = "c_isFinished")

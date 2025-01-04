@@ -1,12 +1,13 @@
-package com.reyreey.filimo.Model.People;
+package com.reyreey.filimo.Model;
 
+import com.reyreey.filimo.Model.People.Person;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "t_user")
-public class User extends Person {
+public class User extends BaseEntity {
     private String username;
     private String password;
 

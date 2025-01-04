@@ -8,6 +8,7 @@ import jakarta.persistence.*;
 public class Video extends BaseEntity {
     private String url;
     private Quality quality;
+    private MediaItem mediaItem;
 
     @Column(name = "c_url" , nullable = false)
     public String getUrl() {
@@ -26,5 +27,15 @@ public class Video extends BaseEntity {
 
     public void setQuality(Quality quality) {
         this.quality = quality;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "c_mediaItem",referencedColumnName = "id")
+    public MediaItem getMediaItem() {
+        return mediaItem;
+    }
+
+    public void setMediaItem(MediaItem mediaItem) {
+        this.mediaItem = mediaItem;
     }
 }

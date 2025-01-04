@@ -1,6 +1,5 @@
 package com.reyreey.filimo.Model;
 
-import com.reyreey.filimo.Model.People.User;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;

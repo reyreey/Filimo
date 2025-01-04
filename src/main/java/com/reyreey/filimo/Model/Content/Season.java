@@ -11,6 +11,17 @@ public class Season extends Content {
     private int seasonNo;
     private TVSeries tvSeries;
     private Set<MediaItem> episodes;
+    private ContentDetail detail;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "c_detail",referencedColumnName = "id")
+    public ContentDetail getDetail() {
+        return detail;
+    }
+
+    public void setDetail(ContentDetail detail) {
+        this.detail = detail;
+    }
 
     @Column(name = "c_seasonNo")
     public int getSeasonNo() {
@@ -31,7 +42,7 @@ public class Season extends Content {
         this.tvSeries = tvSeries;
     }
 
-    @OneToMany(mappedBy = "mediaItem")
+    @OneToMany(mappedBy = "season")
     public Set<MediaItem> getEpisodes() {
         return episodes;
     }

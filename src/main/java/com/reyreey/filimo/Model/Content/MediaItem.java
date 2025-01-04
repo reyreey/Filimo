@@ -10,6 +10,18 @@ public class MediaItem extends Content{
 
     private Season season;
     private Set<Video> videos;
+    private ContentDetail detail;
+    private int episodeNo;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "c_detail",referencedColumnName = "id")
+    public ContentDetail getDetail() {
+        return detail;
+    }
+
+    public void setDetail(ContentDetail detail) {
+        this.detail = detail;
+    }
 
     @ManyToOne
     @JoinColumn(name = "c_season", referencedColumnName = "id")
@@ -21,13 +33,22 @@ public class MediaItem extends Content{
         this.season = season;
     }
 
-    @OneToMany(mappedBy = "video")
+    @OneToMany(mappedBy = "mediaItem")
     public Set<Video> getVideos() {
         return videos;
     }
 
     public void setVideos(Set<Video> videos) {
         this.videos = videos;
+    }
+
+    @Column(name = "c_episodeNo")
+    public int getEpisodeNo() {
+        return episodeNo;
+    }
+
+    public void setEpisodeNo(int episodeNo) {
+        this.episodeNo = episodeNo;
     }
 
     @Override
