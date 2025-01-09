@@ -1,8 +1,7 @@
 package com.reyreey.filimo.Repository.Content;
 
 
-import com.reyreey.filimo.Model.Content.Content;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.reyreey.filimo.Model.Content.Season;
 
-public interface SeasonRepository extends JpaRepository<Content, Long> {
+public interface SeasonRepository extends GenericRepository<Season> {
 }
