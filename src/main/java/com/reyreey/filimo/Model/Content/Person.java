@@ -1,9 +1,10 @@
-package com.reyreey.filimo.Model.People;
+package com.reyreey.filimo.Model.Content;
 
-import com.reyreey.filimo.Model.BaseEntity;
+import com.reyreey.filimo.Model.Common.BaseEntity;
 import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -12,6 +13,7 @@ public class Person extends BaseEntity {
     private String firstName;
     private String lastName;
     private Date dateOfBirth;
+    private Set<PersonRoleInMediaItem> personRoleInMediaItems;
 
     @Column(name = "c_firstName")
     public String getFirstName() {
@@ -38,6 +40,15 @@ public class Person extends BaseEntity {
 
     public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+
+    @OneToMany(mappedBy = "person")
+    public Set<PersonRoleInMediaItem> getPersonRoleInMediaItems() {
+        return personRoleInMediaItems;
+    }
+
+    public void setPersonRoleInMediaItems(Set<PersonRoleInMediaItem> personRoleInMediaItems) {
+        this.personRoleInMediaItems = personRoleInMediaItems;
     }
 
     @Override

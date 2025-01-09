@@ -1,4 +1,4 @@
-package com.reyreey.filimo.Model;
+package com.reyreey.filimo.Model.Common;
 
 import jakarta.persistence.*;
 

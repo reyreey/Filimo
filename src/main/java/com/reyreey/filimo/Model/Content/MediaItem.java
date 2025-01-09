@@ -12,6 +12,9 @@ public class MediaItem extends Content{
     private Set<Video> videos;
     private ContentDetail detail;
     private int episodeNo;
+    private Set<Genre> genres;
+    private double rate;
+    private Set<PersonRoleInMediaItem> personRoleInMediaItems;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "c_detail",referencedColumnName = "id")
@@ -49,6 +52,37 @@ public class MediaItem extends Content{
 
     public void setEpisodeNo(int episodeNo) {
         this.episodeNo = episodeNo;
+    }
+
+    @ElementCollection(targetClass = Genre.class)
+    @CollectionTable(name = "mm_mediaItem_genre",
+            joinColumns = @JoinColumn(name = "mediaItem_id"))
+    @Enumerated(EnumType.STRING)
+    @Column(name = "genre")
+    public Set<Genre> getGenres() {
+        return genres;
+    }
+
+    public void setGenres(Set<Genre> genres) {
+        this.genres = genres;
+    }
+
+    @Column(name = "c_rate")
+    public double getRate() {
+        return rate;
+    }
+
+    public void setRate(double rating) {
+        this.rate = rating;
+    }
+
+    @OneToMany(mappedBy = "mediaItem")
+    public Set<PersonRoleInMediaItem> getPersonRoleInMediaItems() {
+        return personRoleInMediaItems;
+    }
+
+    public void setPersonRoleInMediaItems(Set<PersonRoleInMediaItem> personRoleInMediaItems) {
+        this.personRoleInMediaItems = personRoleInMediaItems;
     }
 
     @Override

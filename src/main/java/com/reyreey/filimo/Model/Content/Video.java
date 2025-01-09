@@ -1,6 +1,6 @@
 package com.reyreey.filimo.Model.Content;
 
-import com.reyreey.filimo.Model.BaseEntity;
+import com.reyreey.filimo.Model.Common.BaseEntity;
 import jakarta.persistence.*;
 
 @Entity

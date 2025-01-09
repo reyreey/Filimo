@@ -1,6 +1,6 @@
-package com.reyreey.filimo.Model;
+package com.reyreey.filimo.Model.UserManagement;
 
-import com.reyreey.filimo.Model.People.Person;
+import com.reyreey.filimo.Model.Common.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
