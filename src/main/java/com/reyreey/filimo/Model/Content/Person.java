@@ -3,7 +3,7 @@ package com.reyreey.filimo.Model.Content;
 import com.reyreey.filimo.Model.Common.BaseEntity;
 import jakarta.persistence.*;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Set;
 
 @Entity
@@ -12,7 +12,7 @@ import java.util.Set;
 public class Person extends BaseEntity {
     private String firstName;
     private String lastName;
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
     private Set<PersonRoleInMediaItem> personRoleInMediaItems;
 
     @Column(name = "c_firstName")
@@ -34,11 +34,11 @@ public class Person extends BaseEntity {
     }
 
     @Column(name = "c_dateOfBirth")
-    public Date getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
@@ -53,6 +53,6 @@ public class Person extends BaseEntity {
 
     @Override
     public String toString() {
-        return "firstName + lastName";
+        return firstName +" "+ lastName +" "+ dateOfBirth;
     }
 }
