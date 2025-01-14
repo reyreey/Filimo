@@ -1,18 +1,18 @@
-package com.reyreey.filimo.Service.Content.Impl;
+package com.reyreey.filimo.Service.Content.SpringDataJPA;
 
 import com.reyreey.filimo.Model.Content.Video;
-import com.reyreey.filimo.Repository.Content.VideoRepository;
-import com.reyreey.filimo.Service.Content.VideoService;
+import com.reyreey.filimo.Repository.Content.IVideoRepository;
+import com.reyreey.filimo.Service.Content.IVideoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class VideoServiceImpl implements VideoService {
+public class VideoServiceImpl implements IVideoService {
 
     @Autowired
-    private VideoRepository videoRepository;
+    private IVideoRepository videoRepository;
 
     @Override
     public List<Video> findAll() {
@@ -27,11 +27,6 @@ public class VideoServiceImpl implements VideoService {
             throw new RuntimeException("Video not found");
         }
         return video.get();
-    }
-
-    @Override
-    public Boolean isExists(String title) {
-        return videoRepository.existsByTitle(title);
     }
 
     @Override

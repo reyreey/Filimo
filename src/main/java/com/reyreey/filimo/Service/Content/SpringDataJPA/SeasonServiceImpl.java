@@ -1,18 +1,18 @@
-package com.reyreey.filimo.Service.Content.Impl;
+package com.reyreey.filimo.Service.Content.SpringDataJPA;
 
 import com.reyreey.filimo.Model.Content.Season;
-import com.reyreey.filimo.Repository.Content.SeasonRepository;
-import com.reyreey.filimo.Service.Content.SeasonService;
+import com.reyreey.filimo.Repository.Content.ISeasonRepository;
+import com.reyreey.filimo.Service.Content.ISeasonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class SeasonServiceImpl implements SeasonService {
+public class SeasonServiceImpl implements ISeasonService {
 
     @Autowired
-    private SeasonRepository seasonRepository;
+    private ISeasonRepository seasonRepository;
 
     @Override
     public List<Season> findAll() {
@@ -28,11 +28,6 @@ public class SeasonServiceImpl implements SeasonService {
             throw new RuntimeException("Season not found");
         }
         return season.get();
-    }
-
-    @Override
-    public Boolean isExists(String title) {
-        return seasonRepository.existsByTitle(title);
     }
 
     @Override

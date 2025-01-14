@@ -1,18 +1,18 @@
-package com.reyreey.filimo.Service.Content.Impl;
+package com.reyreey.filimo.Service.Content.SpringDataJPA;
 
 import com.reyreey.filimo.Model.Content.Person;
-import com.reyreey.filimo.Repository.Content.PersonRepository;
-import com.reyreey.filimo.Service.Content.PersonService;
+import com.reyreey.filimo.Repository.Content.IPersonRepository;
+import com.reyreey.filimo.Service.Content.IPersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class PersonServiceImpl implements PersonService {
+public class PersonServiceImpl implements IPersonService {
 
     @Autowired
-    private PersonRepository personRepository;
+    private IPersonRepository personRepository;
 
     @Override
     public List<Person> findAll() {
@@ -27,11 +27,6 @@ public class PersonServiceImpl implements PersonService {
             throw new RuntimeException("Person not found");
         }
         return person.get();
-    }
-
-    @Override
-    public Boolean isExists(String title) {
-        return personRepository.existsByTitle(title);
     }
 
     @Override
@@ -55,5 +50,20 @@ public class PersonServiceImpl implements PersonService {
             throw new RuntimeException("Person not found");
         }
         personRepository.deleteById(id);
+    }
+
+    @Override
+    public Person findByFullName(String fullName) {
+        return personRepository.findByFullName(fullName);
+    }
+
+    @Override
+    public Person findByLastName(String lastName) {
+        return personRepository.findByLastName(lastName);
+    }
+
+    @Override
+    public List<Person> findByLastNameLike(String lastName) {
+        return personRepository.findByLastNameLike(lastName);
     }
 }

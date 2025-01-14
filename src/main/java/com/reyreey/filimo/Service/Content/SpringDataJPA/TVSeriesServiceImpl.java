@@ -1,18 +1,18 @@
-package com.reyreey.filimo.Service.Content.Impl;
+package com.reyreey.filimo.Service.Content.SpringDataJPA;
 
 import com.reyreey.filimo.Model.Content.TVSeries;
-import com.reyreey.filimo.Repository.Content.TVSeriesRepository;
-import com.reyreey.filimo.Service.Content.TVSeriesService;
+import com.reyreey.filimo.Repository.Content.ITVSeriesRepository;
+import com.reyreey.filimo.Service.Content.ITVSeriesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class TVSeriesServiceImpl implements TVSeriesService {
+public class TVSeriesServiceImpl implements ITVSeriesService {
 
     @Autowired
-    private TVSeriesRepository tvSeriesRepository;
+    private ITVSeriesRepository tvSeriesRepository;
 
     @Override
     public List<TVSeries> findAll() {
@@ -27,11 +27,6 @@ public class TVSeriesServiceImpl implements TVSeriesService {
             throw new RuntimeException("TVSeries not found");
         }
         return tvSeries.get();
-    }
-
-    @Override
-    public Boolean isExists(String title) {
-        return tvSeriesRepository.existsByTitle(title);
     }
 
     @Override

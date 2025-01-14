@@ -1,18 +1,18 @@
-package com.reyreey.filimo.Service.Content.Impl;
+package com.reyreey.filimo.Service.Content.SpringDataJPA;
 
 import com.reyreey.filimo.Model.Content.MediaItem;
-import com.reyreey.filimo.Repository.Content.MediaItemRepository;
-import com.reyreey.filimo.Service.Content.MediaItemService;
+import com.reyreey.filimo.Repository.Content.IMediaItemRepository;
+import com.reyreey.filimo.Service.Content.IMediaItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class MediaItemServiceImpl implements MediaItemService {
+public class MediaItemServiceImpl implements IMediaItemService {
 
     @Autowired
-    private MediaItemRepository mediaItemRepository;
+    private IMediaItemRepository mediaItemRepository;
 
     @Override
     public List<MediaItem> findAll() {
@@ -27,11 +27,6 @@ public class MediaItemServiceImpl implements MediaItemService {
             throw new RuntimeException("MediaItem not found");
         }
         return mediaItem.get();
-    }
-
-    @Override
-    public Boolean isExists(String title) {
-        return mediaItemRepository.existsByTitle(title);
     }
 
     @Override

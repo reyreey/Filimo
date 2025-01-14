@@ -1,17 +1,17 @@
-package com.reyreey.filimo.Service.Content.Impl;
+package com.reyreey.filimo.Service.Content.SpringDataJPA;
 
 import com.reyreey.filimo.Model.Content.ContentDetail;
-import com.reyreey.filimo.Repository.Content.ContentDetailRepository;
-import com.reyreey.filimo.Service.Content.ContentDetailService;
+import com.reyreey.filimo.Repository.Content.IContentDetailRepository;
+import com.reyreey.filimo.Service.Content.IContentDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class ContentDetailServiceImpl implements ContentDetailService {
+public class ContentDetailServiceImpl implements IContentDetailService {
     @Autowired
-    private ContentDetailRepository contentDetailRepository;
+    private IContentDetailRepository contentDetailRepository;
 
     @Override
     public List<ContentDetail> findAll() {
