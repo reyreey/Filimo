@@ -53,11 +53,6 @@ public class PersonServiceImpl implements IPersonService {
     }
 
     @Override
-    public Person findByFullName(String fullName) {
-        return personRepository.findByFullName(fullName);
-    }
-
-    @Override
     public Person findByLastName(String lastName) {
         return personRepository.findByLastName(lastName);
     }

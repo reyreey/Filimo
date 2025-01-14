@@ -2,19 +2,19 @@ package com.reyreey.filimo.Model.Content;
 
 import jakarta.persistence.*;
 
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table(name = "t_mediaItem")
 public class MediaItem extends Content{
 
     private Season season;
-    private Set<Video> videos;
+    private List<Video> videos;
     private ContentDetail detail;
     private int episodeNo;
-    private Set<Genre> genres;
+    private List<Genre> genres;
     private double rate;
-    private Set<PersonRoleInMediaItem> personRoleInMediaItems;
+    private List<PersonRoleInMediaItem> personRoleInMediaItems;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "c_detail",referencedColumnName = "id")
@@ -37,11 +37,11 @@ public class MediaItem extends Content{
     }
 
     @OneToMany(mappedBy = "mediaItem")
-    public Set<Video> getVideos() {
+    public List<Video> getVideos() {
         return videos;
     }
 
-    public void setVideos(Set<Video> videos) {
+    public void setVideos(List<Video> videos) {
         this.videos = videos;
     }
 
@@ -59,11 +59,11 @@ public class MediaItem extends Content{
             joinColumns = @JoinColumn(name = "mediaItem_id"))
     @Enumerated(EnumType.STRING)
     @Column(name = "genre")
-    public Set<Genre> getGenres() {
+    public List<Genre> getGenres() {
         return genres;
     }
 
-    public void setGenres(Set<Genre> genres) {
+    public void setGenres(List<Genre> genres) {
         this.genres = genres;
     }
 
@@ -77,11 +77,11 @@ public class MediaItem extends Content{
     }
 
     @OneToMany(mappedBy = "mediaItem")
-    public Set<PersonRoleInMediaItem> getPersonRoleInMediaItems() {
+    public List<PersonRoleInMediaItem> getPersonRoleInMediaItems() {
         return personRoleInMediaItems;
     }
 
-    public void setPersonRoleInMediaItems(Set<PersonRoleInMediaItem> personRoleInMediaItems) {
+    public void setPersonRoleInMediaItems(List<PersonRoleInMediaItem> personRoleInMediaItems) {
         this.personRoleInMediaItems = personRoleInMediaItems;
     }
 
