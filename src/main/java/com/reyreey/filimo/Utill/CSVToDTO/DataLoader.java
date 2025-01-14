@@ -5,6 +5,8 @@ import com.reyreey.filimo.Repository.Content.IPersonRepository;
 import com.reyreey.filimo.Utill.CSVToDTO.DTO.PersonDTO;
 import com.reyreey.filimo.Utill.CSVToDTO.Mapper.PersonMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,15 +16,15 @@ import java.util.List;
  * @mailto : reyhaneh179@yahoo.com
  * @created : 1/14/2025, Tuesday
  **/
-@Service
-public class DataLoader {
+@Component
+public class DataLoader implements CommandLineRunner {
 
     @Autowired
     private IPersonRepository personRepository;
 
     public void init() {
         // مسیر فایل CSV
-        String csvFilePath = "src/main/resources/personData.csv"; // مسیر فایل CSV خود را وارد کنید
+        String csvFilePath = "src/main/resources/personData.csv";
 
         // خواندن داده‌ها از فایل CSV
         List<PersonDTO> personDTOList = GenericCSVToDTO.readCSV(csvFilePath, PersonDTO.class);
@@ -35,6 +37,13 @@ public class DataLoader {
                 personRepository.save(person);
                 System.out.println("Person saved: " + person);
             }
+        }
+    }
+
+    @Override
+    public void run(String... args) throws Exception {
+        if (personRepository.findAll().isEmpty()) {
+            init();
         }
     }
 }
