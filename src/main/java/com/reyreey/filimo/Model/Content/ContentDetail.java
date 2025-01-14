@@ -1,7 +1,9 @@
 package com.reyreey.filimo.Model.Content;
 
 import com.reyreey.filimo.Model.Common.BaseEntity;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
 import java.time.LocalDate;
 

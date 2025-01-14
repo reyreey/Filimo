@@ -1,7 +1,7 @@
 package com.reyreey.filimo.Model.Content;
 
 import com.reyreey.filimo.Model.Common.BaseEntity;
-import jakarta.persistence.*;
+import jakarta.persistence.MappedSuperclass;
 
 @MappedSuperclass
 public abstract class Content extends BaseEntity {
