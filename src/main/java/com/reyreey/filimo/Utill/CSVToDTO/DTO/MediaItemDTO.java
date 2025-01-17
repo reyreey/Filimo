@@ -18,7 +18,7 @@ public class MediaItemDTO {
     private String title;
     private String summary;
     private LocalDate releaseDate;
-    private int episodeNo;
+    private Integer episodeNo;
     private List<Genre> genres = new ArrayList<>();
     private double rate;
     private List<PersonRoleDTO> personRoles = new ArrayList<>();
@@ -63,11 +63,11 @@ public class MediaItemDTO {
         this.releaseDate = releaseDate;
     }
 
-    public int getEpisodeNo() {
+    public Integer getEpisodeNo() {
         return episodeNo;
     }
 
-    public void setEpisodeNo(int episodeNo) {
+    public void setEpisodeNo(Integer episodeNo) {
         this.episodeNo = episodeNo;
     }
 

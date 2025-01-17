@@ -1,4 +1,4 @@
-package com.reyreey.filimo.Controller.Content;
+package com.reyreey.filimo.Controller.Content.api;
 
 import com.reyreey.filimo.Model.Content.MediaItem;
 import com.reyreey.filimo.Service.Content.IMediaItemService;
@@ -16,7 +16,7 @@ import java.util.List;
  **/
 
 @RestController
-@RequestMapping(path = "/api/media-item", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(path = "/media-item", produces = MediaType.APPLICATION_JSON_VALUE)
 public class MediaItemController {
 
     @Autowired

@@ -24,4 +24,16 @@ public class PersonRoleMapper {
 
         return entity;
     }
+
+    public static PersonRoleDTO mapToDTO(PersonRole entity) {
+        PersonRoleDTO dto = new PersonRoleDTO();
+
+        dto.setFirstName(entity.getPerson().getFirstName());
+        dto.setLastName(entity.getPerson().getLastName());
+        dto.setDateOfBirth(entity.getPerson().getDateOfBirth());
+
+        dto.setRoleType(entity.getRoleType());
+
+        return dto;
+    }
 }

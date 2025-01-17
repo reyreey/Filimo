@@ -1,4 +1,4 @@
-package com.reyreey.filimo.Controller.Content;
+package com.reyreey.filimo.Controller.Content.api;
 
 import com.reyreey.filimo.Model.Content.Video;
 import com.reyreey.filimo.Service.Content.IVideoService;

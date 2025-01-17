@@ -32,7 +32,7 @@ public class MediaItemService {
     @Transactional
     public MediaItem createMediaItem(MediaItem mediaItem, ContentDetail contentDetail,
                                      List<PersonRole> personRoleList,List<Genre> genres,
-                                     List<Video> videos,double rate,int episodeNo){
+                                     List<Video> videos,double rate,Integer episodeNo){
 
         mediaItem.setEpisodeNo(episodeNo);
         mediaItem.setRate(rate);

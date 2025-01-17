@@ -12,7 +12,7 @@ public class MediaItem extends Content{
     private Season season;
     private List<Video> videos;
     private ContentDetail detail;
-    private int episodeNo;
+    private Integer episodeNo;
     private List<Genre> genres;
     private double rate;
     private List<PersonRole> personRoles = new ArrayList<>();
@@ -47,11 +47,11 @@ public class MediaItem extends Content{
     }
 
     @Column(name = "c_episodeNo")
-    public int getEpisodeNo() {
+    public Integer getEpisodeNo() {
         return episodeNo;
     }
 
-    public void setEpisodeNo(int episodeNo) {
+    public void setEpisodeNo(Integer episodeNo) {
         this.episodeNo = episodeNo;
     }
 
