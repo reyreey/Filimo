@@ -2,6 +2,8 @@ package com.reyreey.filimo.Model.Content;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -10,7 +12,7 @@ public class Season extends Content {
 
     private int seasonNo;
     private TVSeries tvSeries;
-    private Set<MediaItem> episodes;
+    private List<MediaItem> episodes = new ArrayList<>();
     private ContentDetail detail;
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -43,11 +45,11 @@ public class Season extends Content {
     }
 
     @OneToMany(mappedBy = "season")
-    public Set<MediaItem> getEpisodes() {
+    public List<MediaItem> getEpisodes() {
         return episodes;
     }
 
-    public void setEpisodes(Set<MediaItem> episodes) {
+    public void setEpisodes(List<MediaItem> episodes) {
         this.episodes = episodes;
     }
 
@@ -69,5 +71,15 @@ public class Season extends Content {
     @Override
     public void confirm() {
 
+    }
+
+    @Override
+    public String toString() {
+        return "Season{" +
+                "seasonNo=" + seasonNo +
+                ", tvSeries=" + tvSeries +
+                ", episodes=" + episodes +
+                ", detail=" + detail +
+                '}';
     }
 }

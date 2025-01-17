@@ -2,13 +2,15 @@ package com.reyreey.filimo.Model.Content;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name = "t_tvSeries")
 public class TVSeries extends Content{
 
-    private Set<Season> seasons;
+    private List<Season> seasons = new ArrayList<>();
     private boolean isFinished;
     private ContentDetail detail;
 
@@ -23,11 +25,11 @@ public class TVSeries extends Content{
     }
 
     @OneToMany(mappedBy = "tvSeries")
-    public Set<Season> getSeasons() {
+    public List<Season> getSeasons() {
         return seasons;
     }
 
-    public void setSeasons(Set<Season> seasons) {
+    public void setSeasons(List<Season> seasons) {
         this.seasons = seasons;
     }
 
@@ -55,8 +57,18 @@ public class TVSeries extends Content{
 
     }
 
+
     @Override
     public void confirm() {
 
+    }
+
+    @Override
+    public String toString() {
+        return "TVSeries{" +
+                "seasons=" + seasons +
+                ", isFinished=" + isFinished +
+                ", detail=" + detail +
+                '}';
     }
 }

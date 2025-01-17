@@ -2,6 +2,7 @@ package com.reyreey.filimo.Model.Content;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -14,7 +15,7 @@ public class MediaItem extends Content{
     private int episodeNo;
     private List<Genre> genres;
     private double rate;
-    private List<PersonRoleInMediaItem> personRoleInMediaItems;
+    private List<PersonRole> personRoles = new ArrayList<>();
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "c_detail",referencedColumnName = "id")
@@ -76,13 +77,17 @@ public class MediaItem extends Content{
         this.rate = rating;
     }
 
-    @OneToMany(mappedBy = "mediaItem")
-    public List<PersonRoleInMediaItem> getPersonRoleInMediaItems() {
-        return personRoleInMediaItems;
+    @ManyToMany
+    @JoinTable(
+            name = "mm_mediaItem_personRole",
+            joinColumns = @JoinColumn(name = "mediaItem_id"),
+            inverseJoinColumns = @JoinColumn(name = "personRole_id"))
+    public List<PersonRole> getPersonRoles() {
+        return personRoles;
     }
 
-    public void setPersonRoleInMediaItems(List<PersonRoleInMediaItem> personRoleInMediaItems) {
-        this.personRoleInMediaItems = personRoleInMediaItems;
+    public void setPersonRoles(List<PersonRole> personRoles) {
+        this.personRoles = personRoles;
     }
 
     @Override
@@ -103,5 +108,18 @@ public class MediaItem extends Content{
     @Override
     public void confirm() {
 
+    }
+
+    @Override
+    public String toString() {
+        return "MediaItem{" +
+                "season=" + season +
+                ", videos=" + videos +
+                ", detail=" + detail +
+                ", episodeNo=" + episodeNo +
+                ", genres=" + genres +
+                ", rate=" + rate +
+                ", personRoles=" + personRoles +
+                '}';
     }
 }

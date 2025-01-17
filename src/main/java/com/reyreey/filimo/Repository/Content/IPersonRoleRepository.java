@@ -1,6 +1,6 @@
 package com.reyreey.filimo.Repository.Content;
 
-import com.reyreey.filimo.Model.Content.PersonRoleInMediaItem;
+import com.reyreey.filimo.Model.Content.PersonRole;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -9,5 +9,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @created : 1/14/2025, Tuesday
  **/
 
-public interface IPersonRoleInMediaItemRepository extends JpaRepository<PersonRoleInMediaItem,Long> {
+public interface IPersonRoleRepository extends JpaRepository<PersonRole,Long> {
 }

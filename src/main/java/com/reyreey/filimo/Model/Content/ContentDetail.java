@@ -51,4 +51,13 @@ public class ContentDetail extends BaseEntity {
         this.releaseDate = releasedate;
     }
 
+    @Override
+    public String toString() {
+        return "ContentDetail{" +
+                "code='" + code + '\'' +
+                ", title='" + title + '\'' +
+                ", summary='" + summary + '\'' +
+                ", releaseDate=" + releaseDate +
+                '}';
+    }
 }

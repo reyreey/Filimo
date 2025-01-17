@@ -1,5 +1,6 @@
 package com.reyreey.filimo.Model.Content;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.reyreey.filimo.Model.Common.BaseEntity;
 import jakarta.persistence.*;
 
@@ -8,6 +9,7 @@ import jakarta.persistence.*;
 public class Video extends BaseEntity {
     private String url;
     private Quality quality;
+    @JsonIgnore
     private MediaItem mediaItem;
 
     @Column(name = "c_url" , nullable = false)
@@ -37,5 +39,13 @@ public class Video extends BaseEntity {
 
     public void setMediaItem(MediaItem mediaItem) {
         this.mediaItem = mediaItem;
+    }
+
+    @Override
+    public String toString() {
+        return "Video{" +
+                "url='" + url + '\'' +
+                ", quality=" + quality +
+                '}';
     }
 }

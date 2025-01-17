@@ -3,6 +3,7 @@ package com.reyreey.filimo.Service.Content.Impl;
 import com.reyreey.filimo.Model.Content.*;
 import com.reyreey.filimo.Repository.Content.*;
 import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -17,16 +18,24 @@ import java.util.List;
 @Service
 public class MediaItemService {
 
+    @Autowired
     private IMediaItemRepository mediaItemRepository;
+    @Autowired
     private IContentDetailRepository contentDetailRepository;
+    @Autowired
     private IPersonRepository personRepository;
-    private IPersonRoleInMediaItemRepository personRoleInMediaItemRepository;
+    @Autowired
+    private IPersonRoleRepository personRoleRepository;
+    @Autowired
     private IVideoRepository  videoRepository;
 
     @Transactional
     public MediaItem createMediaItem(MediaItem mediaItem, ContentDetail contentDetail,
-                                     List<Person> personList,List<Genre> genres,
-                                     List<Video> videos, RoleType roleType){
+                                     List<PersonRole> personRoleList,List<Genre> genres,
+                                     List<Video> videos,double rate,int episodeNo){
+
+        mediaItem.setEpisodeNo(episodeNo);
+        mediaItem.setRate(rate);
 
         mediaItem.setGenres(genres);
 
@@ -40,19 +49,13 @@ public class MediaItemService {
             videoRepository.save(video);
         }
 
-        List<PersonRoleInMediaItem> personRoleInMediaItemList = new ArrayList<>();
-        for(Person person : personList){
-            personRepository.save(person);
-            PersonRoleInMediaItem personRoleInMediaItem = new PersonRoleInMediaItem();
-            personRoleInMediaItem.setMediaItem(mediaItem);
-            personRoleInMediaItem.setPerson(person);
-            personRoleInMediaItem.setRoleType(roleType);
+        mediaItem.setPersonRoles(personRoleList);
+        for(PersonRole personRole : personRoleList){
+            personRepository.save(personRole.getPerson());
 
-            personRoleInMediaItemRepository.save(personRoleInMediaItem);
-
-            personRoleInMediaItemList.add(personRoleInMediaItem);
+            personRole.getMediaItemList().add(mediaItem);
+            personRoleRepository.save(personRole);
         }
-        mediaItem.setPersonRoleInMediaItems(personRoleInMediaItemList);
 
        return mediaItemRepository.save(mediaItem);
     }

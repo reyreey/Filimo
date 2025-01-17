@@ -1,9 +1,12 @@
 package com.reyreey.filimo.Model.Content;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.reyreey.filimo.Model.Common.BaseEntity;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -13,7 +16,8 @@ public class Person extends BaseEntity {
     private String firstName;
     private String lastName;
     private LocalDate dateOfBirth;
-    private Set<PersonRoleInMediaItem> personRoleInMediaItems;
+    @JsonIgnore
+    private List<PersonRole> personRoles = new ArrayList<>();
 
     @Column(name = "c_firstName")
     public String getFirstName() {
@@ -43,16 +47,20 @@ public class Person extends BaseEntity {
     }
 
     @OneToMany(mappedBy = "person")
-    public Set<PersonRoleInMediaItem> getPersonRoleInMediaItems() {
-        return personRoleInMediaItems;
+    public List<PersonRole> getPersonRoles() {
+        return personRoles;
     }
 
-    public void setPersonRoleInMediaItems(Set<PersonRoleInMediaItem> personRoleInMediaItems) {
-        this.personRoleInMediaItems = personRoleInMediaItems;
+    public void setPersonRoles(List<PersonRole> personRoles) {
+        this.personRoles = personRoles;
     }
 
     @Override
     public String toString() {
-        return firstName +" "+ lastName +" "+ dateOfBirth;
+        return "Person{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", dateOfBirth=" + dateOfBirth +
+                '}';
     }
 }

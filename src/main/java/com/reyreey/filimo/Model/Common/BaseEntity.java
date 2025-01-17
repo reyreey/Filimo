@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 public abstract class BaseEntity implements Cloneable, Serializable {
 
     private Long id;
-    private boolean enabled;
+    private boolean enabled = true;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
@@ -25,7 +25,7 @@ public abstract class BaseEntity implements Cloneable, Serializable {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name ="id", unique = true, nullable = false)
     public Long getId() {
         return id;
