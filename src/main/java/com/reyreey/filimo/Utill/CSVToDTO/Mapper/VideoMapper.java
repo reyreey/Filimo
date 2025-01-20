@@ -1,7 +1,7 @@
 package com.reyreey.filimo.Utill.CSVToDTO.Mapper;
 
 import com.reyreey.filimo.Model.Content.Video;
-import com.reyreey.filimo.Utill.CSVToDTO.DTO.VideoDTO;
+import com.reyreey.filimo.DTO.VideoDTO;
 
 /**
  * @author : reyreey

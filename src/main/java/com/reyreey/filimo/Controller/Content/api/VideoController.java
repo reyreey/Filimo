@@ -2,7 +2,7 @@ package com.reyreey.filimo.Controller.Content.api;
 
 import com.reyreey.filimo.Model.Content.Video;
 import com.reyreey.filimo.Service.Content.IVideoService;
-import com.reyreey.filimo.Utill.CSVToDTO.DTO.VideoDTO;
+import com.reyreey.filimo.DTO.VideoDTO;
 import com.reyreey.filimo.Utill.CSVToDTO.Mapper.VideoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -2,7 +2,7 @@ package com.reyreey.filimo.Utill.CSVToDTO.Mapper;
 
 import com.reyreey.filimo.Model.Content.Person;
 import com.reyreey.filimo.Model.Content.PersonRole;
-import com.reyreey.filimo.Utill.CSVToDTO.DTO.PersonRoleDTO;
+import com.reyreey.filimo.DTO.PersonRoleDTO;
 
 /**
  * @author : reyreey

@@ -1,7 +1,7 @@
 package com.reyreey.filimo.Controller.Content.view;
 
 import com.reyreey.filimo.Service.Content.IMediaItemService;
-import com.reyreey.filimo.Utill.CSVToDTO.DTO.MediaItemDTO;
+import com.reyreey.filimo.DTO.MediaItemDTO;
 import com.reyreey.filimo.Utill.CSVToDTO.Mapper.MediaItemMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

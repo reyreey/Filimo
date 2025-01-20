@@ -1,12 +1,20 @@
 package com.reyreey.filimo.Service.Content.Impl;
 
-import com.reyreey.filimo.Model.Content.*;
-import com.reyreey.filimo.Repository.Content.*;
+import com.reyreey.filimo.DTO.MediaItemDTO;
+import com.reyreey.filimo.DTO.PersonRoleDTO;
+import com.reyreey.filimo.Model.Content.MediaItem;
+import com.reyreey.filimo.Model.Content.PersonRole;
+import com.reyreey.filimo.Model.Content.Video;
+import com.reyreey.filimo.Repository.Content.IMediaItemRepository;
+import com.reyreey.filimo.Service.Content.IContentDetailService;
+import com.reyreey.filimo.Service.Content.IPersonRoleService;
+import com.reyreey.filimo.Service.Content.IPersonService;
+import com.reyreey.filimo.Service.Content.IVideoService;
+import com.reyreey.filimo.Utill.CSVToDTO.Mapper.MediaItemMapper;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,47 +24,67 @@ import java.util.List;
  **/
 
 @Service
-public class MediaItemService {
+public class MediaItemService  {
 
     @Autowired
     private IMediaItemRepository mediaItemRepository;
     @Autowired
-    private IContentDetailRepository contentDetailRepository;
+    private IContentDetailService contentDetailService;
     @Autowired
-    private IPersonRepository personRepository;
+    private IPersonRoleService iPersonRoleService;
     @Autowired
-    private IPersonRoleRepository personRoleRepository;
+    private PersonRoleService personRoleService;
+
     @Autowired
-    private IVideoRepository  videoRepository;
+    private IPersonService personService;
+
+    @Autowired
+    private IVideoService videoService;
 
     @Transactional
-    public MediaItem createMediaItem(MediaItem mediaItem, ContentDetail contentDetail,
-                                     List<PersonRole> personRoleList,List<Genre> genres,
-                                     List<Video> videos,double rate,Integer episodeNo){
+    public MediaItemDTO createMediaItem(MediaItemDTO mediaItemDTO){
+        personRoleService.createPersonRoles(mediaItemDTO.getPersonRoles());
 
-        mediaItem.setEpisodeNo(episodeNo);
-        mediaItem.setRate(rate);
+        MediaItem mediaItem = MediaItemMapper.mapToEntity(mediaItemDTO);
 
-        mediaItem.setGenres(genres);
+        contentDetailService.insert(mediaItem.getDetail());
 
-        mediaItem.setDetail(contentDetail);
-        contentDetailRepository.save(contentDetail);
+        //mige in 2taro hatman haminja save kon na too methode create
+        iPersonRoleService.insertAll(mediaItem.getPersonRoles());
+        personService.insertAll(mediaItem.getPersonRoles().stream().map(PersonRole::getPerson).toList());
 
-        mediaItem.setVideos(videos);
-
-        for(Video video : videos){
+        for(Video video : mediaItem.getVideos()){
             video.setMediaItem(mediaItem);
-            videoRepository.save(video);
+        }
+        videoService.insertAll(mediaItem.getVideos());
+
+       return MediaItemMapper.mapToDTO(mediaItemRepository.save(mediaItem));
+    }
+
+    @Transactional
+    public List<MediaItemDTO> createMediaItems(List<MediaItemDTO> mediaItemDTOs) {
+        for(MediaItemDTO mediaItemDTO : mediaItemDTOs){
+            personRoleService.createPersonRoles(mediaItemDTO.getPersonRoles());
         }
 
-        mediaItem.setPersonRoles(personRoleList);
-        for(PersonRole personRole : personRoleList){
-            personRepository.save(personRole.getPerson());
+        List<MediaItem> mediaItems=mediaItemDTOs.stream().map(MediaItemMapper::mapToEntity).toList();
 
-            personRole.getMediaItemList().add(mediaItem);
-            personRoleRepository.save(personRole);
+        for (MediaItem mediaItem : mediaItems) {
+            //mige in 2taro hatman haminja save kon na too methode create
+            iPersonRoleService.insertAll(mediaItem.getPersonRoles());
+            personService.insertAll(mediaItem.getPersonRoles().stream().map(PersonRole::getPerson).toList());
+
+            contentDetailService.insert(mediaItem.getDetail());
+
+            for(Video video : mediaItem.getVideos()){
+                video.setMediaItem(mediaItem);
+            }
+            videoService.insertAll(mediaItem.getVideos());
+
         }
 
-       return mediaItemRepository.save(mediaItem);
+        List<MediaItemDTO> createdMediaItems=mediaItemRepository.saveAll(mediaItems).stream().map(MediaItemMapper::mapToDTO).toList();
+
+        return createdMediaItems;
     }
 }

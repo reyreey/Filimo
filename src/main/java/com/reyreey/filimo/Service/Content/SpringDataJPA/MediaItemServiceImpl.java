@@ -30,8 +30,8 @@ public class MediaItemServiceImpl implements IMediaItemService {
     }
 
     @Override
-    public void insert(MediaItem mediaItem) {
-        mediaItemRepository.save(mediaItem);
+    public MediaItem insert(MediaItem mediaItem) {
+        return mediaItemRepository.save(mediaItem);
     }
 
     @Override
@@ -50,5 +50,10 @@ public class MediaItemServiceImpl implements IMediaItemService {
             throw new RuntimeException("MediaItem not found");
         }
         mediaItemRepository.deleteById(id);
+    }
+
+    @Override
+    public List<MediaItem> insertAll(List<MediaItem> mediaItems) {
+        return mediaItemRepository.saveAll(mediaItems);
     }
 }

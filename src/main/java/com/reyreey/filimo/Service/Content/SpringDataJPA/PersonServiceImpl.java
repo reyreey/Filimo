@@ -30,8 +30,8 @@ public class PersonServiceImpl implements IPersonService {
     }
 
     @Override
-    public void insert(Person person) {
-        personRepository.save(person);
+    public Person insert(Person person) {
+        return personRepository.save(person);
     }
 
     @Override
@@ -50,6 +50,11 @@ public class PersonServiceImpl implements IPersonService {
             throw new RuntimeException("Person not found");
         }
         personRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Person> insertAll(List<Person> personList) {
+        return personRepository.saveAll(personList);
     }
 
     @Override

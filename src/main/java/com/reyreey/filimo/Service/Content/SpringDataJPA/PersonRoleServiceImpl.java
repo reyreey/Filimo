@@ -36,8 +36,8 @@ public class PersonRoleServiceImpl implements IPersonRoleService {
     }
 
     @Override
-    public void insert(PersonRole personRole) {
-        personRoleRepository.save(personRole);
+    public PersonRole insert(PersonRole personRole) {
+        return personRoleRepository.save(personRole);
     }
 
     @Override
@@ -56,5 +56,11 @@ public class PersonRoleServiceImpl implements IPersonRoleService {
             throw new RuntimeException("PersonRole not found");
         }
         personRoleRepository.deleteById(id);
+    }
+
+    @Override
+    public List<PersonRole> insertAll(List<PersonRole> personRoles) {
+
+        return personRoleRepository.saveAll(personRoles);
     }
 }

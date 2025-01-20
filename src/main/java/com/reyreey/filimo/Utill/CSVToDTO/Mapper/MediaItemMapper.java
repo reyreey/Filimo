@@ -4,9 +4,9 @@ import com.reyreey.filimo.Model.Content.ContentDetail;
 import com.reyreey.filimo.Model.Content.MediaItem;
 import com.reyreey.filimo.Model.Content.PersonRole;
 import com.reyreey.filimo.Model.Content.Video;
-import com.reyreey.filimo.Utill.CSVToDTO.DTO.MediaItemDTO;
-import com.reyreey.filimo.Utill.CSVToDTO.DTO.PersonRoleDTO;
-import com.reyreey.filimo.Utill.CSVToDTO.DTO.VideoDTO;
+import com.reyreey.filimo.DTO.MediaItemDTO;
+import com.reyreey.filimo.DTO.PersonRoleDTO;
+import com.reyreey.filimo.DTO.VideoDTO;
 
 import java.util.List;
 

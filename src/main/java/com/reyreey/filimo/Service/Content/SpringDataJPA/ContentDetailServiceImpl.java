@@ -34,8 +34,8 @@ public class ContentDetailServiceImpl implements IContentDetailService {
     }
 
     @Override
-    public void insert(ContentDetail contentDetail) {
-        contentDetailRepository.save(contentDetail);
+    public ContentDetail insert(ContentDetail contentDetail) {
+        return contentDetailRepository.save(contentDetail);
     }
 
     @Override
@@ -54,5 +54,10 @@ public class ContentDetailServiceImpl implements IContentDetailService {
             throw new RuntimeException("ContentDetail not found");
         }
         contentDetailRepository.deleteById(id);
+    }
+
+    @Override
+    public List<ContentDetail> insertAll(List<ContentDetail> contentDetails) {
+        return contentDetailRepository.saveAll(contentDetails);
     }
 }

@@ -1,4 +1,4 @@
-package com.reyreey.filimo.Utill.CSVToDTO.DTO;
+package com.reyreey.filimo.DTO;
 
 import com.reyreey.filimo.Model.Content.RoleType;
 

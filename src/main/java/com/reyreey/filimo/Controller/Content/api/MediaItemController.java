@@ -16,7 +16,7 @@ import java.util.List;
  **/
 
 @RestController
-@RequestMapping(path = "/media-item", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(path = "/api/media-item", produces = MediaType.APPLICATION_JSON_VALUE)
 public class MediaItemController {
 
     @Autowired

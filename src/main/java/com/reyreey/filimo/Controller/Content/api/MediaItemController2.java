@@ -1,12 +1,15 @@
 package com.reyreey.filimo.Controller.Content.api;
 
-import com.reyreey.filimo.Model.Content.MediaItem;
+import com.reyreey.filimo.DTO.MediaItemDTO;
 import com.reyreey.filimo.Service.Content.Impl.MediaItemService;
-import com.reyreey.filimo.Utill.CSVToDTO.DTO.MediaItemDTO;
-import com.reyreey.filimo.Utill.CSVToDTO.Mapper.MediaItemMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * @author : reyreey
@@ -15,21 +18,28 @@ import org.springframework.web.bind.annotation.*;
  **/
 
 @RestController
-@RequestMapping(path = "/api/media-items")
+@RequestMapping(path = "/api")
 public class MediaItemController2 {
 
     @Autowired
     private MediaItemService mediaItemService;
 
 
-    @PostMapping
-    public ResponseEntity<MediaItem> createMediaItem(@RequestBody MediaItemDTO mediaItemDTO){
-        MediaItem mediaItem = MediaItemMapper.mapToEntity(mediaItemDTO);
+    @PostMapping(path = "/add-media-item")
+    public ResponseEntity<MediaItemDTO> createMediaItem(@RequestBody MediaItemDTO mediaItemDTO){
 
 
-        MediaItem createdMediaItem = mediaItemService.createMediaItem(mediaItem,mediaItem.getDetail(),
-                mediaItem.getPersonRoles(), mediaItem.getGenres(),mediaItem.getVideos(),mediaItem.getRate(),mediaItem.getEpisodeNo());
+        MediaItemDTO createdMediaItem = mediaItemService.createMediaItem(mediaItemDTO);
 
         return ResponseEntity.ok(createdMediaItem);
+    }
+
+    @PostMapping(path = "/add-media-items")
+    public ResponseEntity<List<MediaItemDTO>> createMediaItems(@RequestBody List<MediaItemDTO> mediaItemDTOs){
+
+
+        List<MediaItemDTO> createdMediaItems = mediaItemService.createMediaItems(mediaItemDTOs);
+
+        return ResponseEntity.ok(createdMediaItems);
     }
 }

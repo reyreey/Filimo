@@ -30,8 +30,8 @@ public class VideoServiceImpl implements IVideoService {
     }
 
     @Override
-    public void insert(Video video) {
-        videoRepository.save(video);
+    public Video insert(Video video) {
+        return videoRepository.save(video);
     }
 
     @Override
@@ -50,5 +50,10 @@ public class VideoServiceImpl implements IVideoService {
         }
         //TODO data not found exception
         else throw new RuntimeException("Video not found");
+    }
+
+    @Override
+    public List<Video> insertAll(List<Video> videoList) {
+        return videoRepository.saveAll(videoList);
     }
 }
