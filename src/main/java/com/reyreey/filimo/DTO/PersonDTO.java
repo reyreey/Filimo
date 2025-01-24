@@ -1,5 +1,7 @@
 package com.reyreey.filimo.DTO;
 
+import jakarta.validation.constraints.NotNull;
+
 import java.time.LocalDate;
 
 /**
@@ -9,7 +11,9 @@ import java.time.LocalDate;
 **/
     
 public class PersonDTO {
+    @NotNull(message = "{notnull}")
     private String firstName;
+    @NotNull(message = "{notnull}")
     private String lastName;
     private LocalDate dateOfBirth;
 

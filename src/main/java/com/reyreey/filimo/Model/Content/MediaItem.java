@@ -1,6 +1,8 @@
 package com.reyreey.filimo.Model.Content;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.Range;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +21,7 @@ public class MediaItem extends Content{
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "c_detail",referencedColumnName = "id")
+    @NotNull(message = "{notnull}")
     public ContentDetail getDetail() {
         return detail;
     }
@@ -69,6 +72,7 @@ public class MediaItem extends Content{
     }
 
     @Column(name = "c_rate")
+    @Range(min = 0, max = 10,message = "{rate.range}")
     public double getRate() {
         return rate;
     }

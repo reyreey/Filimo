@@ -1,6 +1,8 @@
 package com.reyreey.filimo.DTO;
 
 import com.reyreey.filimo.Model.Content.Genre;
+import jakarta.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.Range;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -15,11 +17,13 @@ import java.util.List;
 public class MediaItemDTO {
     private List<VideoDTO> videos = new ArrayList<>();
     private String code;
+    @NotNull(message = "{notnull}")
     private String title;
     private String summary;
     private LocalDate releaseDate;
     private Integer episodeNo;
     private List<Genre> genres = new ArrayList<>();
+    @Range(min = 0, max = 10 , message = "{rate.range}")
     private double rate;
     private List<PersonRoleDTO> personRoles = new ArrayList<>();
 

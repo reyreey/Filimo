@@ -3,6 +3,7 @@ package com.reyreey.filimo.Model.Content;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.reyreey.filimo.Model.Common.BaseEntity;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +14,10 @@ import java.util.List;
  * @created : 1/17/2025, Friday
  **/
 @Entity
-@Table(name = "t_personRole")
+@Table(name = "t_personRole",
+        uniqueConstraints = {
+                @UniqueConstraint(name = "personRole",columnNames = {"c_person","c_roleType"})
+        })
 public class PersonRole extends BaseEntity {
     private Person  person;
     private RoleType roleType;
@@ -22,6 +26,7 @@ public class PersonRole extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "c_person", referencedColumnName = "id")
+//    @NotNull(message = "{notnull}")
     public Person getPerson() {
         return person;
     }
@@ -32,6 +37,7 @@ public class PersonRole extends BaseEntity {
 
     @Column(name = "c_roleType")
     @Enumerated(EnumType.STRING)
+    @NotNull(message = "{notnull}")
     public RoleType getRoleType() {
         return roleType;
     }

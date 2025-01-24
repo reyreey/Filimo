@@ -2,6 +2,7 @@ package com.reyreey.filimo.Controller.Content.api;
 
 import com.reyreey.filimo.DTO.MediaItemDTO;
 import com.reyreey.filimo.Service.Content.Impl.MediaItemService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,7 +27,7 @@ public class MediaItemController2 {
 
 
     @PostMapping(path = "/add-media-item")
-    public ResponseEntity<MediaItemDTO> createMediaItem(@RequestBody MediaItemDTO mediaItemDTO){
+    public ResponseEntity<MediaItemDTO> createMediaItem(@Valid@RequestBody MediaItemDTO mediaItemDTO){
 
 
         MediaItemDTO createdMediaItem = mediaItemService.createMediaItem(mediaItemDTO);
@@ -35,7 +36,7 @@ public class MediaItemController2 {
     }
 
     @PostMapping(path = "/add-media-items")
-    public ResponseEntity<List<MediaItemDTO>> createMediaItems(@RequestBody List<MediaItemDTO> mediaItemDTOs){
+    public ResponseEntity<List<MediaItemDTO>> createMediaItems(@Valid@RequestBody List<MediaItemDTO> mediaItemDTOs){
 
 
         List<MediaItemDTO> createdMediaItems = mediaItemService.createMediaItems(mediaItemDTOs);

@@ -1,6 +1,7 @@
 package com.reyreey.filimo.DTO;
 
 import com.reyreey.filimo.Model.Content.Quality;
+import org.hibernate.validator.constraints.URL;
 
 /**
  * @author : reyreey
@@ -9,6 +10,7 @@ import com.reyreey.filimo.Model.Content.Quality;
  **/
 
 public class VideoDTO {
+    @URL(message = "{url}")
     private String url;
     private Quality quality;
 

@@ -1,6 +1,7 @@
 package com.reyreey.filimo.DTO;
 
 import com.reyreey.filimo.Model.Content.RoleType;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 
@@ -11,9 +12,12 @@ import java.time.LocalDate;
  **/
 
 public class PersonRoleDTO {
+    @NotNull(message = "{notnull}")
     private String firstName;
+    @NotNull(message = "{notnull}")
     private String lastName;
     private LocalDate dateOfBirth;
+    @NotNull(message = "{notnull}")
     private RoleType roleType;
 
     public String getFirstName() {
