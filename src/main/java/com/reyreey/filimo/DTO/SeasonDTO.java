@@ -11,20 +11,11 @@ import java.util.List;
  **/
 
 public class SeasonDTO {
-    private int seasonNo;
     private List<MediaItemDTO> episodes = new ArrayList<>();
     private String code;
     private String title;
     private String summary;
     private LocalDate releaseDate;
-
-    public int getSeasonNo() {
-        return seasonNo;
-    }
-
-    public void setSeasonNo(int seasonNo) {
-        this.seasonNo = seasonNo;
-    }
 
     public List<MediaItemDTO> getEpisodes() {
         return episodes;

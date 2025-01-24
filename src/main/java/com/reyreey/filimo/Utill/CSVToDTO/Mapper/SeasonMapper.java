@@ -19,7 +19,6 @@ public class SeasonMapper {
                 .map(MediaItemMapper::mapToEntity)
                 .toList());
 
-        entity.setSeasonNo(dto.getSeasonNo());
 
         ContentDetail  contentDetail = new ContentDetail();
         contentDetail.setCode(dto.getCode());
@@ -44,7 +43,6 @@ public class SeasonMapper {
         dto.setSummary(entity.getDetail().getSummary());
         dto.setReleaseDate(entity.getDetail().getReleaseDate());
 
-        dto.setSeasonNo(entity.getSeasonNo());
 
         return dto;
     }

@@ -25,6 +25,7 @@ public class TVSeries extends Content{
     }
 
     @OneToMany(mappedBy = "tvSeries")
+    @OrderColumn(name = "c_seasonNo", columnDefinition = "integer default Null")
     public List<Season> getSeasons() {
         return seasons;
     }

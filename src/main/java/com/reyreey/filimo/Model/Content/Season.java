@@ -1,6 +1,7 @@
 package com.reyreey.filimo.Model.Content;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +11,6 @@ import java.util.Set;
 @Table(name = "t_seaeon")
 public class Season extends Content {
 
-    private int seasonNo;
     private TVSeries tvSeries;
     private List<MediaItem> episodes = new ArrayList<>();
     private ContentDetail detail;
@@ -25,15 +25,6 @@ public class Season extends Content {
         this.detail = detail;
     }
 
-    @Column(name = "c_seasonNo")
-    public int getSeasonNo() {
-        return seasonNo;
-    }
-
-    public void setSeasonNo(int seasonNo) {
-        this.seasonNo = seasonNo;
-    }
-
     @ManyToOne
     @JoinColumn(name = "c_tvSeries" , referencedColumnName = "id")
     public TVSeries getTvSeries() {
@@ -45,6 +36,7 @@ public class Season extends Content {
     }
 
     @OneToMany(mappedBy = "season")
+    @OrderColumn(name = "c_episodeNo" , columnDefinition = "integer default Null")
     public List<MediaItem> getEpisodes() {
         return episodes;
     }
@@ -76,7 +68,6 @@ public class Season extends Content {
     @Override
     public String toString() {
         return "Season{" +
-                "seasonNo=" + seasonNo +
                 ", tvSeries=" + tvSeries +
                 ", episodes=" + episodes +
                 ", detail=" + detail +

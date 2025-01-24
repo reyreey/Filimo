@@ -14,7 +14,6 @@ public class MediaItem extends Content{
     private Season season;
     private List<Video> videos;
     private ContentDetail detail;
-    private Integer episodeNo;
     private List<Genre> genres;
     private double rate;
     private List<PersonRole> personRoles = new ArrayList<>();
@@ -49,20 +48,12 @@ public class MediaItem extends Content{
         this.videos = videos;
     }
 
-    @Column(name = "c_episodeNo")
-    public Integer getEpisodeNo() {
-        return episodeNo;
-    }
-
-    public void setEpisodeNo(Integer episodeNo) {
-        this.episodeNo = episodeNo;
-    }
-
     @ElementCollection(targetClass = Genre.class)
     @CollectionTable(name = "mm_mediaItem_genre",
             joinColumns = @JoinColumn(name = "mediaItem_id"))
     @Enumerated(EnumType.STRING)
     @Column(name = "genre")
+    @OrderColumn(name = "idx")
     public List<Genre> getGenres() {
         return genres;
     }
@@ -86,6 +77,7 @@ public class MediaItem extends Content{
             name = "mm_mediaItem_personRole",
             joinColumns = @JoinColumn(name = "mediaItem_id"),
             inverseJoinColumns = @JoinColumn(name = "personRole_id"))
+    @OrderColumn(name = "idx")
     public List<PersonRole> getPersonRoles() {
         return personRoles;
     }
@@ -120,7 +112,6 @@ public class MediaItem extends Content{
                 "season=" + season +
                 ", videos=" + videos +
                 ", detail=" + detail +
-                ", episodeNo=" + episodeNo +
                 ", genres=" + genres +
                 ", rate=" + rate +
                 ", personRoles=" + personRoles +

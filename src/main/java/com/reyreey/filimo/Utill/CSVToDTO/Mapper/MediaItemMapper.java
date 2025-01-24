@@ -43,7 +43,6 @@ public class MediaItemMapper {
         entity.setPersonRoles(personRoles);
 
         entity.setRate(dto.getRate());
-        entity.setEpisodeNo(dto.getEpisodeNo());
 
         return entity;
     }
@@ -72,7 +71,6 @@ public class MediaItemMapper {
         dto.setPersonRoles(personRoles);
 
         dto.setRate(entity.getRate());
-        dto.setEpisodeNo(entity.getEpisodeNo());
 
         return dto;
     }

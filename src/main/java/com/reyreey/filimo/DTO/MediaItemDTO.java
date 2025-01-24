@@ -21,7 +21,6 @@ public class MediaItemDTO {
     private String title;
     private String summary;
     private LocalDate releaseDate;
-    private Integer episodeNo;
     private List<Genre> genres = new ArrayList<>();
     @Range(min = 0, max = 10 , message = "{rate.range}")
     private double rate;
@@ -65,14 +64,6 @@ public class MediaItemDTO {
 
     public void setReleaseDate(LocalDate releaseDate) {
         this.releaseDate = releaseDate;
-    }
-
-    public Integer getEpisodeNo() {
-        return episodeNo;
-    }
-
-    public void setEpisodeNo(Integer episodeNo) {
-        this.episodeNo = episodeNo;
     }
 
     public List<Genre> getGenres() {
