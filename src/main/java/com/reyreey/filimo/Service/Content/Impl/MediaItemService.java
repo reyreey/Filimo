@@ -32,8 +32,6 @@ public class MediaItemService  {
     private IContentDetailService contentDetailService;
     @Autowired
     private IPersonRoleService iPersonRoleService;
-    @Autowired
-    private PersonRoleService personRoleService;
 
     @Autowired
     private IPersonService personService;
@@ -43,7 +41,6 @@ public class MediaItemService  {
 
     @Transactional
     public MediaItemDTO createMediaItem(MediaItemDTO mediaItemDTO){
-        personRoleService.createPersonRoles(mediaItemDTO.getPersonRoles());
 
         MediaItem mediaItem = MediaItemMapper.mapToEntity(mediaItemDTO);
 
@@ -63,9 +60,6 @@ public class MediaItemService  {
 
     @Transactional
     public List<MediaItemDTO> createMediaItems(List<MediaItemDTO> mediaItemDTOs) {
-        for(MediaItemDTO mediaItemDTO : mediaItemDTOs){
-            personRoleService.createPersonRoles(mediaItemDTO.getPersonRoles());
-        }
 
         List<MediaItem> mediaItems=mediaItemDTOs.stream().map(MediaItemMapper::mapToEntity).toList();
 
