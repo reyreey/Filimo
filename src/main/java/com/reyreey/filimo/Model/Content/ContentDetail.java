@@ -4,11 +4,15 @@ import com.reyreey.filimo.Model.Common.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "t_contentDetails")
+@Table(name = "t_contentDetails",
+        uniqueConstraints = {
+        @UniqueConstraint(name = "contentDetail_code",columnNames = "c_code"),
+                @UniqueConstraint(name = "contentDetail_title",columnNames = "c_title")})
 public class ContentDetail extends BaseEntity {
     private String code;
     private String title;
@@ -60,4 +64,5 @@ public class ContentDetail extends BaseEntity {
                 ", releaseDate=" + releaseDate +
                 '}';
     }
+
 }
