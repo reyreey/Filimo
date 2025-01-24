@@ -31,8 +31,8 @@ public class SeasonServiceImpl implements ISeasonService {
     }
 
     @Override
-    public void insert(Season season) {
-        seasonRepository.save(season);
+    public Season insert(Season season) {
+        return seasonRepository.save(season);
     }
 
     @Override
@@ -52,5 +52,10 @@ public class SeasonServiceImpl implements ISeasonService {
         }
         seasonRepository.deleteById(id);
 
+    }
+
+    @Override
+    public List<Season> insertAll(List<Season> seasonList) {
+        return seasonRepository.saveAll(seasonList);
     }
 }
