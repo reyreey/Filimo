@@ -28,15 +28,15 @@ public class SeasonService {
     @Autowired
     private IContentDetailService contentDetailService;
     @Autowired
-    private IMediaItemService iMediaItemService;
+    private IMediaItemService mediaItemService;
 //    @Autowired
 //    private MediaItemService mediaItemService;
     @Autowired
-    private IPersonRoleService iPersonRoleService;
+    private IPersonRoleService personRoleService;
     @Autowired
     private IPersonService personService;
     @Autowired
-    private IVideoService iVideoService;
+    private IVideoService videoService;
 
     @Transactional
     public SeasonDTO createSeason(SeasonDTO seasonDTO){
@@ -46,20 +46,17 @@ public class SeasonService {
 
         contentDetailService.insert(season.getDetail());
 
-        for (MediaItem mediaItem : season.getEpisodes()){
-            mediaItem.setSeason(season);
-        }
         //mige in 3taro hatman haminja save kon na too methode create
-        iMediaItemService.insertAll(season.getEpisodes());
         for (MediaItem mediaItem : season.getEpisodes()) {
-            iPersonRoleService.insertAll(mediaItem.getPersonRoles());
+            mediaItem.setSeason(season);
+            personRoleService.insertAll(mediaItem.getPersonRoles());
             personService.insertAll(mediaItem.getPersonRoles().stream().map(PersonRole::getPerson).toList());
             for (Video video : mediaItem.getVideos()) {
                 video.setMediaItem(mediaItem);
             }
-            iVideoService.insertAll(mediaItem.getVideos());
-
+            videoService.insertAll(mediaItem.getVideos());
         }
+        mediaItemService.insertAll(season.getEpisodes());
 
         return SeasonMapper.mapToDTO(seasonRepository.save(season));
     }
@@ -82,14 +79,14 @@ public class SeasonService {
                 mediaItem.setSeason(season);
             }
             //mige in 3taro hatman haminja save kon na too methode create
-            iMediaItemService.insertAll(season.getEpisodes());
+            mediaItemService.insertAll(season.getEpisodes());
             for (MediaItem mediaItem : season.getEpisodes()) {
-                iPersonRoleService.insertAll(mediaItem.getPersonRoles());
+                personRoleService.insertAll(mediaItem.getPersonRoles());
                 personService.insertAll(mediaItem.getPersonRoles().stream().map(PersonRole::getPerson).toList());
                 for (Video video : mediaItem.getVideos()) {
                     video.setMediaItem(mediaItem);
                 }
-                iVideoService.insertAll(mediaItem.getVideos());
+                videoService.insertAll(mediaItem.getVideos());
             }
 
         }

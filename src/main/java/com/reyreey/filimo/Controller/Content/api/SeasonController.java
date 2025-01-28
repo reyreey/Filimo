@@ -44,7 +44,7 @@ public class SeasonController {
     }
 
     @GetMapping(path = "/seasons/all")
-    public List<Season> getAllMediaItems(){
+    public List<Season> getAllSeasons(){
         return iSeasonService.findAll();
     }
 

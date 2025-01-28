@@ -1,7 +1,6 @@
 package com.reyreey.filimo.Service.Content.Impl;
 
 import com.reyreey.filimo.DTO.MediaItemDTO;
-import com.reyreey.filimo.DTO.PersonRoleDTO;
 import com.reyreey.filimo.Model.Content.MediaItem;
 import com.reyreey.filimo.Model.Content.PersonRole;
 import com.reyreey.filimo.Model.Content.Video;
@@ -31,7 +30,7 @@ public class MediaItemService  {
     @Autowired
     private IContentDetailService contentDetailService;
     @Autowired
-    private IPersonRoleService iPersonRoleService;
+    private IPersonRoleService personRoleService;
 
     @Autowired
     private IPersonService personService;
@@ -47,7 +46,7 @@ public class MediaItemService  {
         contentDetailService.insert(mediaItem.getDetail());
 
         //mige in 2taro hatman haminja save kon na too methode create
-        iPersonRoleService.insertAll(mediaItem.getPersonRoles());
+        personRoleService.insertAll(mediaItem.getPersonRoles());
         personService.insertAll(mediaItem.getPersonRoles().stream().map(PersonRole::getPerson).toList());
 
         for(Video video : mediaItem.getVideos()){
@@ -65,7 +64,7 @@ public class MediaItemService  {
 
         for (MediaItem mediaItem : mediaItems) {
             //mige in 2taro hatman haminja save kon na too methode create
-            iPersonRoleService.insertAll(mediaItem.getPersonRoles());
+            personRoleService.insertAll(mediaItem.getPersonRoles());
             personService.insertAll(mediaItem.getPersonRoles().stream().map(PersonRole::getPerson).toList());
 
             contentDetailService.insert(mediaItem.getDetail());
