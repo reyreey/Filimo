@@ -2,6 +2,7 @@ package com.reyreey.filimo.Service.Content.SpringDataJPA;
 
 import com.reyreey.filimo.Model.Content.Person;
 import com.reyreey.filimo.Repository.Content.IPersonRepository;
+import com.reyreey.filimo.Service.Content.Exceptions.DataNotFoundException;
 import com.reyreey.filimo.Service.Content.IPersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,8 +24,7 @@ public class PersonServiceImpl implements IPersonService {
     public Person find(Long id) {
         var person = personRepository.findById(id);
         if(person.isEmpty()){
-            //TODO data not found exception
-            throw new RuntimeException("Person not found");
+            throw new DataNotFoundException("Person not found");
         }
         return person.get();
     }
@@ -37,8 +37,7 @@ public class PersonServiceImpl implements IPersonService {
     @Override
     public void change(Person person) {
         if(!personRepository.existsById(person.getId())){
-            //TODO data not found exception
-            throw new RuntimeException("Person not found");
+            throw new DataNotFoundException("Person not found");
         }
         personRepository.save(person);
     }
@@ -46,8 +45,7 @@ public class PersonServiceImpl implements IPersonService {
     @Override
     public void remove(Long id) {
         if(!personRepository.existsById(id)){
-            //TODO data not found exception
-            throw new RuntimeException("Person not found");
+            throw new DataNotFoundException("Person not found");
         }
         personRepository.deleteById(id);
     }

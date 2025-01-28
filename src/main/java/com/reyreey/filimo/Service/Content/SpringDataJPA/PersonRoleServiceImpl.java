@@ -2,6 +2,7 @@ package com.reyreey.filimo.Service.Content.SpringDataJPA;
 
 import com.reyreey.filimo.Model.Content.PersonRole;
 import com.reyreey.filimo.Repository.Content.IPersonRoleRepository;
+import com.reyreey.filimo.Service.Content.Exceptions.DataNotFoundException;
 import com.reyreey.filimo.Service.Content.IPersonRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,8 +30,7 @@ public class PersonRoleServiceImpl implements IPersonRoleService {
     public PersonRole find(Long id) {
         var personRole = personRoleRepository.findById(id);
         if (personRole.isEmpty()){
-            //TODO data not found exception
-            throw new RuntimeException("PersonRole not found");
+            throw new DataNotFoundException("PersonRole not found");
         }
         return personRole.get();
     }
@@ -43,8 +43,7 @@ public class PersonRoleServiceImpl implements IPersonRoleService {
     @Override
     public void change(PersonRole personRole) {
         if(!personRoleRepository.existsById(personRole.getId())){
-            //TODO data not found exception
-            throw new RuntimeException("PersonRole not found");
+            throw new DataNotFoundException("PersonRole not found");
         }
         personRoleRepository.save(personRole);
     }
@@ -52,8 +51,7 @@ public class PersonRoleServiceImpl implements IPersonRoleService {
     @Override
     public void remove(Long id) {
         if(!personRoleRepository.existsById(id)){
-            //TODO data not found exception
-            throw new RuntimeException("PersonRole not found");
+            throw new DataNotFoundException("PersonRole not found");
         }
         personRoleRepository.deleteById(id);
     }

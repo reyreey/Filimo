@@ -2,6 +2,7 @@ package com.reyreey.filimo.Service.Content.SpringDataJPA;
 
 import com.reyreey.filimo.Model.Content.Season;
 import com.reyreey.filimo.Repository.Content.ISeasonRepository;
+import com.reyreey.filimo.Service.Content.Exceptions.DataNotFoundException;
 import com.reyreey.filimo.Service.Content.ISeasonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,8 +25,7 @@ public class SeasonServiceImpl implements ISeasonService {
     public Season find(Long id) {
         var season = seasonRepository.findById(id);
         if(season.isEmpty()){
-            //TODO data not found exception
-            throw new RuntimeException("Season not found");
+            throw new DataNotFoundException("Season not found");
         }
         return season.get();
     }
@@ -38,8 +38,7 @@ public class SeasonServiceImpl implements ISeasonService {
     @Override
     public void change(Season season) {
         if(!seasonRepository.existsById(season.getId())){
-            //TODO data not found exception
-            throw new RuntimeException("Season not found");
+            throw new DataNotFoundException("Season not found");
         }
         seasonRepository.save(season);
     }
@@ -47,8 +46,7 @@ public class SeasonServiceImpl implements ISeasonService {
     @Override
     public void remove(Long id) {
         if(!seasonRepository.existsById(id)){
-            //TODO data not found exception
-            throw new RuntimeException("Season not found");
+            throw new DataNotFoundException("Season not found");
         }
         seasonRepository.deleteById(id);
 
