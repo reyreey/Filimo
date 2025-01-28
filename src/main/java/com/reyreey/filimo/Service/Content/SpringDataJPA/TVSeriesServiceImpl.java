@@ -2,6 +2,7 @@ package com.reyreey.filimo.Service.Content.SpringDataJPA;
 
 import com.reyreey.filimo.Model.Content.TVSeries;
 import com.reyreey.filimo.Repository.Content.ITVSeriesRepository;
+import com.reyreey.filimo.Service.Content.Exceptions.DataNotFoundException;
 import com.reyreey.filimo.Service.Content.ITVSeriesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,22 +24,20 @@ public class TVSeriesServiceImpl implements ITVSeriesService {
     public TVSeries find(Long id) {
         var tvSeries = tvSeriesRepository.findById(id);
         if(tvSeries.isEmpty()) {
-            //TODO data not found exception
-            throw new RuntimeException("TVSeries not found");
+            throw new DataNotFoundException("TVSeries not found");
         }
         return tvSeries.get();
     }
 
     @Override
-    public void insert(TVSeries tvSeries) {
-        tvSeriesRepository.save(tvSeries);
+    public TVSeries insert(TVSeries tvSeries) {
+        return tvSeriesRepository.save(tvSeries);
     }
 
     @Override
     public void change(TVSeries tvSeries) {
         if(!tvSeriesRepository.existsById(tvSeries.getId())){
-            //TODO data not found exception
-            throw new RuntimeException("TVSeries not found");
+            throw new DataNotFoundException("TVSeries not found");
         }
         tvSeriesRepository.save(tvSeries);
     }
@@ -46,10 +45,14 @@ public class TVSeriesServiceImpl implements ITVSeriesService {
     @Override
     public void remove(Long id) {
         if(!tvSeriesRepository.existsById(id)){
-            //TODO data not found exception
-            throw new RuntimeException("TVSeries not found");
+            throw new DataNotFoundException("TVSeries not found");
         }
         tvSeriesRepository.deleteById(id);
 
+    }
+
+    @Override
+    public List<TVSeries> insertAll(List<TVSeries> tvSeriesList) {
+        return tvSeriesRepository.saveAll(tvSeriesList);
     }
 }

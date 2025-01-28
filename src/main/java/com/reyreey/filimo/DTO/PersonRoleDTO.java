@@ -51,4 +51,9 @@ public class PersonRoleDTO {
     public void setRoleType(RoleType roleType) {
         this.roleType = roleType;
     }
+
+    @Override
+    public String toString() {
+        return firstName + " " + lastName + " (" + roleType + ")";
+    }
 }

@@ -40,4 +40,12 @@ public class PersonDTO {
     public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
+
+    @Override
+    public String toString() {
+        return "PersonDTO{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName +
+                '}';
+    }
 }

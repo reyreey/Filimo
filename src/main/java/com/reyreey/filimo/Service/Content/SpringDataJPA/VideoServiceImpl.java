@@ -2,6 +2,7 @@ package com.reyreey.filimo.Service.Content.SpringDataJPA;
 
 import com.reyreey.filimo.Model.Content.Video;
 import com.reyreey.filimo.Repository.Content.IVideoRepository;
+import com.reyreey.filimo.Service.Content.Exceptions.DataNotFoundException;
 import com.reyreey.filimo.Service.Content.IVideoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,8 +24,7 @@ public class VideoServiceImpl implements IVideoService {
     public Video find(Long id) {
         var video=videoRepository.findById(id);
         if(video.isEmpty()){
-            //TODO data not found exception
-            throw new RuntimeException("Video not found");
+            throw new DataNotFoundException("Video not found");
         }
         return video.get();
     }
@@ -39,8 +39,7 @@ public class VideoServiceImpl implements IVideoService {
         if(videoRepository.existsById(video.getId())) {
             videoRepository.save(video);
         }
-        //TODO data not found exception
-        else throw new RuntimeException("Video not found");
+        else throw new DataNotFoundException("Video not found");
     }
 
     @Override
@@ -48,8 +47,7 @@ public class VideoServiceImpl implements IVideoService {
         if(videoRepository.existsById(id)) {
             videoRepository.deleteById(id);
         }
-        //TODO data not found exception
-        else throw new RuntimeException("Video not found");
+        else throw new DataNotFoundException("Video not found");
     }
 
     @Override
