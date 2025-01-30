@@ -55,12 +55,18 @@ public class MediaItemService  {
         }
         videoService.insertAll(mediaItem.getVideos());
 
+        MediaItem createdMedia;
         if (seasonId != null) {
             Season season = seasonService.find(seasonId);
             mediaItem.setSeason(season);
-        }
 
-       return MediaItemMapper.mapToDTO(mediaItemRepository.save(mediaItem));
+            createdMedia = mediaItemRepository.save(mediaItem);
+
+            season.getEpisodes().add(mediaItem);
+            seasonService.change(season);
+        } else createdMedia = mediaItemRepository.save(mediaItem);
+
+       return MediaItemMapper.mapToDTO(createdMedia);
     }
 
     @Transactional
@@ -86,9 +92,14 @@ public class MediaItemService  {
             videoService.insertAll(mediaItem.getVideos());
 
             mediaItem.setSeason(season);
+            if (season != null) {
+                season.getEpisodes().add(mediaItem);
+            }
         }
 
         List<MediaItemDTO> createdMediaItems=mediaItemRepository.saveAll(mediaItems).stream().map(MediaItemMapper::mapToDTO).toList();
+
+        seasonService.change(season);
 
         return createdMediaItems;
     }
