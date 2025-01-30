@@ -5,10 +5,7 @@ import com.reyreey.filimo.Service.Content.Impl.MediaItemService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,19 +24,20 @@ public class MediaItemController2 {
 
 
     @PostMapping(path = "/add-media-item")
-    public ResponseEntity<MediaItemDTO> createMediaItem(@Valid@RequestBody MediaItemDTO mediaItemDTO){
+    public ResponseEntity<MediaItemDTO> createMediaItem(@Valid@RequestBody MediaItemDTO mediaItemDTO,
+                                                        @RequestParam(required = false) Long seasonId){
 
 
-        MediaItemDTO createdMediaItem = mediaItemService.createMediaItem(mediaItemDTO);
+        MediaItemDTO createdMediaItem = mediaItemService.createMediaItem(mediaItemDTO,seasonId);
 
         return ResponseEntity.ok(createdMediaItem);
     }
 
     @PostMapping(path = "/add-media-items")
-    public ResponseEntity<List<MediaItemDTO>> createMediaItems(@Valid@RequestBody List<MediaItemDTO> mediaItemDTOs){
+    public ResponseEntity<List<MediaItemDTO>> createMediaItems(@Valid@RequestBody List<MediaItemDTO> mediaItemDTOs,@RequestParam(required = false) Long seasonId){
 
 
-        List<MediaItemDTO> createdMediaItems = mediaItemService.createMediaItems(mediaItemDTOs);
+        List<MediaItemDTO> createdMediaItems = mediaItemService.createMediaItems(mediaItemDTOs,seasonId);
 
         return ResponseEntity.ok(createdMediaItems);
     }

@@ -25,6 +25,7 @@ public class MediaItemDTO {
     @Range(min = 0, max = 10 , message = "{rate.range}")
     private double rate;
     private List<PersonRoleDTO> personRoles = new ArrayList<>();
+    private String season;
 
     public List<VideoDTO> getVideos() {
         return videos;
@@ -89,4 +90,13 @@ public class MediaItemDTO {
     public void setPersonRoles(List<PersonRoleDTO> personRoles) {
         this.personRoles = personRoles;
     }
+
+    public String getSeason() {
+        return season;
+    }
+
+    public void setSeason(String season) {
+        this.season = season;
+    }
+
 }

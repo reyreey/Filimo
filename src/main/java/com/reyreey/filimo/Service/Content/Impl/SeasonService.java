@@ -1,10 +1,8 @@
 package com.reyreey.filimo.Service.Content.Impl;
 
 import com.reyreey.filimo.DTO.SeasonDTO;
-import com.reyreey.filimo.Model.Content.MediaItem;
-import com.reyreey.filimo.Model.Content.PersonRole;
-import com.reyreey.filimo.Model.Content.Season;
-import com.reyreey.filimo.Model.Content.Video;
+import com.reyreey.filimo.DTO.TVSeriesDTO;
+import com.reyreey.filimo.Model.Content.*;
 import com.reyreey.filimo.Repository.Content.ISeasonRepository;
 import com.reyreey.filimo.Service.Content.*;
 import com.reyreey.filimo.Utill.CSVToDTO.Mapper.SeasonMapper;
@@ -37,9 +35,11 @@ public class SeasonService {
     private IPersonService personService;
     @Autowired
     private IVideoService videoService;
+    @Autowired
+    private ITVSeriesService tvSeriesService;
 
     @Transactional
-    public SeasonDTO createSeason(SeasonDTO seasonDTO){
+    public SeasonDTO createSeason(SeasonDTO seasonDTO, Long tvSeriesId) {
 //        mediaItemService.createMediaItems(seasonDTO.getEpisodes());
 
         Season season = SeasonMapper.mapToEntity(seasonDTO);
@@ -58,11 +58,14 @@ public class SeasonService {
         }
         mediaItemService.insertAll(season.getEpisodes());
 
+        TVSeries tvSeries = tvSeriesService.find(tvSeriesId);
+        season.setTvSeries(tvSeries);
+
         return SeasonMapper.mapToDTO(seasonRepository.save(season));
     }
 
     @Transactional
-    public List<SeasonDTO> createSeasons(List<SeasonDTO> seasonDTOs) {
+    public List<SeasonDTO> createSeasons(List<SeasonDTO> seasonDTOs,Long tvSeriesId) {
 
 //        for(SeasonDTO seasonDTO:seasonDTOs){
 //
@@ -70,6 +73,8 @@ public class SeasonService {
 //        }
 
         List<Season> seasons = seasonDTOs.stream().map(SeasonMapper::mapToEntity).toList();
+
+        TVSeries tvSeries = tvSeriesService.find(tvSeriesId);
 
         for(Season season:seasons){
 
@@ -88,7 +93,7 @@ public class SeasonService {
                 }
                 videoService.insertAll(mediaItem.getVideos());
             }
-
+            season.setTvSeries(tvSeries);
         }
         List<SeasonDTO> createdSeasonDTOs=seasonRepository.saveAll(seasons).stream().map(SeasonMapper::mapToDTO).toList();
 

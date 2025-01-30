@@ -42,6 +42,7 @@ public class SeasonMapper {
         dto.setTitle(entity.getDetail().getTitle());
         dto.setSummary(entity.getDetail().getSummary());
         dto.setReleaseDate(entity.getDetail().getReleaseDate());
+        dto.setTvSeries(entity.getTvSeries().toString());
 
 
         return dto;

@@ -16,6 +16,7 @@ public class SeasonDTO {
     private String title;
     private String summary;
     private LocalDate releaseDate;
+    private String tvSeries;
 
     public List<MediaItemDTO> getEpisodes() {
         return episodes;
@@ -55,5 +56,13 @@ public class SeasonDTO {
 
     public void setReleaseDate(LocalDate releaseDate) {
         this.releaseDate = releaseDate;
+    }
+
+    public String getTvSeries() {
+        return tvSeries;
+    }
+
+    public void setTvSeries(String tvSeries) {
+        this.tvSeries = tvSeries;
     }
 }

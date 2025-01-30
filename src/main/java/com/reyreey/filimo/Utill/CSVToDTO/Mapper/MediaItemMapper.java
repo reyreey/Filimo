@@ -69,8 +69,10 @@ public class MediaItemMapper {
                 .toList();
 
         dto.setPersonRoles(personRoles);
-
         dto.setRate(entity.getRate());
+        if (entity.getSeason() != null) {
+            dto.setSeason(entity.getSeason().toString());
+        }
 
         return dto;
     }
