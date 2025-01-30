@@ -5,8 +5,12 @@ import com.reyreey.filimo.Model.Common.BaseEntity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "t_video")
+@Table(name = "t_video" ,
+        uniqueConstraints = {
+            @UniqueConstraint(name = "video_url",columnNames = "c_url")
+})
 public class Video extends BaseEntity {
+
     private String url;
     private Quality quality;
     @JsonIgnore
