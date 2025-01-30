@@ -67,10 +67,6 @@ public class Season extends Content {
 
     @Override
     public String toString() {
-        return "Season{" +
-                ", tvSeries=" + tvSeries +
-                ", episodes=" + episodes +
-                ", detail=" + detail +
-                '}';
+        return tvSeries.toString() + " - " + detail.getTitle();
     }
 }

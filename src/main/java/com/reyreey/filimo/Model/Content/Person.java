@@ -63,10 +63,6 @@ public class Person extends BaseEntity {
 
     @Override
     public String toString() {
-        return "Person{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", dateOfBirth=" + dateOfBirth +
-                '}';
+        return firstName + " " + lastName;
     }
 }

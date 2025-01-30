@@ -57,12 +57,7 @@ public class ContentDetail extends BaseEntity {
 
     @Override
     public String toString() {
-        return "ContentDetail{" +
-                "code='" + code + '\'' +
-                ", title='" + title + '\'' +
-                ", summary='" + summary + '\'' +
-                ", releaseDate=" + releaseDate +
-                '}';
+        return code + " - " + title + " - " + summary + " - " + releaseDate;
     }
 
 }

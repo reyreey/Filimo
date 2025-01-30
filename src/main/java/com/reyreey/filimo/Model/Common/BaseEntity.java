@@ -46,6 +46,6 @@ public abstract class BaseEntity implements Cloneable, Serializable {
 
     @Override
     public String toString() {
-        return "";
+        return id.toString();
     }
 }

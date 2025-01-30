@@ -43,9 +43,6 @@ public class Video extends BaseEntity {
 
     @Override
     public String toString() {
-        return "Video{" +
-                "url='" + url + '\'' +
-                ", quality=" + quality +
-                '}';
+        return mediaItem.toString() + " - " + quality;
     }
 }

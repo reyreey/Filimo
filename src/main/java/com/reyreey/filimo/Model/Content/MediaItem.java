@@ -108,13 +108,10 @@ public class MediaItem extends Content{
 
     @Override
     public String toString() {
-        return "MediaItem{" +
-                "season=" + season +
-                ", videos=" + videos +
-                ", detail=" + detail +
-                ", genres=" + genres +
-                ", rate=" + rate +
-                ", personRoles=" + personRoles +
-                '}';
+        if (season != null) {
+            return season + " - " + detail.getTitle();
+        }
+        return detail.getTitle();
+
     }
 }
