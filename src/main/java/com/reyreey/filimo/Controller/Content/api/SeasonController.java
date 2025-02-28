@@ -5,6 +5,7 @@ import com.reyreey.filimo.Model.Content.MediaItem;
 import com.reyreey.filimo.Model.Content.Season;
 import com.reyreey.filimo.Service.Content.ISeasonService;
 import com.reyreey.filimo.Service.Content.Impl.SeasonService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +29,7 @@ public class SeasonController {
     private ISeasonService iSeasonService;
 
     @PostMapping(path = "/add-season")
-    public ResponseEntity<SeasonDTO> createSeason(@RequestBody SeasonDTO seasonDTO,@PathVariable Long tvSeriesID){
+    public ResponseEntity<SeasonDTO> createSeason(@Valid @RequestBody SeasonDTO seasonDTO, @PathVariable Long tvSeriesID){
 
         SeasonDTO createdSeason = seasonService.createSeason(seasonDTO,tvSeriesID);
 
@@ -36,7 +37,7 @@ public class SeasonController {
     }
 
     @PostMapping(path = "/add-seasons")
-    public ResponseEntity<List<SeasonDTO>> createSeasons(@RequestBody List<SeasonDTO> seasonDTOs,@PathVariable Long tvSeriesID){
+    public ResponseEntity<List<SeasonDTO>> createSeasons(@Valid @RequestBody List<SeasonDTO> seasonDTOs,@PathVariable Long tvSeriesID){
 
         List<SeasonDTO> createdSeason = seasonService.createSeasons(seasonDTOs,tvSeriesID);
 

@@ -4,6 +4,7 @@ import com.reyreey.filimo.DTO.TVSeriesDTO;
 import com.reyreey.filimo.Model.Content.TVSeries;
 import com.reyreey.filimo.Service.Content.ITVSeriesService;
 import com.reyreey.filimo.Service.Content.Impl.TVSeriesService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +27,7 @@ public class TVSeriesController {
     private ITVSeriesService itvSeriesService;
 
     @PostMapping(path = "/add-tvSeries")
-    public ResponseEntity<TVSeriesDTO> createTVSeries(@RequestBody TVSeriesDTO tvSeriesDTO){
+    public ResponseEntity<TVSeriesDTO> createTVSeries(@Valid @RequestBody TVSeriesDTO tvSeriesDTO){
 
         TVSeriesDTO createdTVSeries = tvSeriesService.createTVSeries(tvSeriesDTO);
 
@@ -34,7 +35,7 @@ public class TVSeriesController {
     }
 
     @PostMapping(path = "/add-tvSeriesList")
-    public ResponseEntity<List<TVSeriesDTO>> createTVSeriesList(@RequestBody List<TVSeriesDTO> tvSeriesDTOs){
+    public ResponseEntity<List<TVSeriesDTO>> createTVSeriesList(@Valid @RequestBody List<TVSeriesDTO> tvSeriesDTOs){
 
         List<TVSeriesDTO> createdTVSeries = tvSeriesService.createTVSeriesList(tvSeriesDTOs);
 
