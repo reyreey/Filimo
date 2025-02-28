@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fa" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>صفحه اصلی</title>
+  <link rel="stylesheet" th:href="@{/resources/css/styles.css}">
+</head>
+<body>
+<!-- هدر -->
+<div id="header"></div>
+
+<!-- محتوا -->
+<main>
+  <section>
+    <h2 class="section-title">معرفی اپلیکیشن</h2>
+    <p>این اپلیکیشن به شما امکان می‌دهد به راحتی فیلم‌ها و سریال‌های موردعلاقه خود را جستجو و مدیریت کنید.</p>
+  </section>
+  <section>
+    <h2 class="section-title">آخرین فیلم‌ها</h2>
+    <div class="list">
+      <div class="list-item">
+        <img src="movie1.jpg" alt="فیلم 1">
+        <p>نام فیلم 1</p>
+      </div>
+      <div class="list-item">
+        <img src="movie2.jpg" alt="فیلم 2">
+        <p>نام فیلم 2</p>
+      </div>
+    </div>
+  </section>
+  <section>
+    <h2 class="section-title">آخرین سریال‌ها</h2>
+    <div class="list">
+      <div class="list-item">
+        <img src="series1.jpg" alt="سریال 1">
+        <p>نام سریال 1</p>
+      </div>
+      <div class="list-item">
+        <img src="series2.jpg" alt="سریال 2">
+        <p>نام سریال 2</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- فوتر -->
+<div id="footer"></div>
+
+<script>
+  // بارگذاری هدر و فوتر
+  fetch('header.html').then(res => res.text()).then(data => document.getElementById('header').innerHTML = data);
+  fetch('footer.html').then(res => res.text()).then(data => document.getElementById('footer').innerHTML = data);
+</script>
+</body>
+</html>
