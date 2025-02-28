@@ -39,7 +39,7 @@ public class MediaItem extends Content{
         this.season = season;
     }
 
-    @OneToMany(mappedBy = "mediaItem")
+    @OneToMany(mappedBy = "mediaItem",cascade = CascadeType.ALL)
     public List<Video> getVideos() {
         return videos;
     }

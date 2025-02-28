@@ -35,8 +35,8 @@ public class Season extends Content {
         this.tvSeries = tvSeries;
     }
 
-    @OneToMany(mappedBy = "season")
-    @OrderColumn(name = "c_episodeNo" , columnDefinition = "integer default Null")
+    @OneToMany(mappedBy = "season",cascade = CascadeType.ALL)
+    @OrderColumn(name = "c_episodeNo")
     public List<MediaItem> getEpisodes() {
         return episodes;
     }

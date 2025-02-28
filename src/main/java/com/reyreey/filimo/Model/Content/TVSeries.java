@@ -24,8 +24,8 @@ public class TVSeries extends Content{
         this.detail = detail;
     }
 
-    @OneToMany(mappedBy = "tvSeries")
-    @OrderColumn(name = "c_seasonNo", columnDefinition = "integer default Null")
+    @OneToMany(mappedBy = "tvSeries",cascade = CascadeType.ALL)
+    @OrderColumn(name = "c_seasonNo")
     public List<Season> getSeasons() {
         return seasons;
     }
@@ -66,6 +66,6 @@ public class TVSeries extends Content{
 
     @Override
     public String toString() {
-        return detail.getTitle();
+        return detail != null ? detail.getTitle() : "Unknown TV Series";
     }
 }
