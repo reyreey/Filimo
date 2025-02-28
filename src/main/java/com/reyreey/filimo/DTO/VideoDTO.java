@@ -1,6 +1,7 @@
 package com.reyreey.filimo.DTO;
 
 import com.reyreey.filimo.Model.Content.Quality;
+import jakarta.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.URL;
 
 /**
@@ -11,6 +12,7 @@ import org.hibernate.validator.constraints.URL;
 
 public class VideoDTO {
     @URL(message = "{url}")
+    @NotNull(message = "{notnull}")
     private String url;
     private Quality quality;
 

@@ -1,5 +1,7 @@
 package com.reyreey.filimo.DTO;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.reyreey.filimo.Model.Content.RoleType;
 import jakarta.validation.constraints.NotNull;
 
@@ -11,11 +13,13 @@ import java.time.LocalDate;
  * @created : 1/17/2025, Friday
  **/
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class PersonRoleDTO {
     @NotNull(message = "{notnull}")
     private String firstName;
     @NotNull(message = "{notnull}")
     private String lastName;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate dateOfBirth;
     @NotNull(message = "{notnull}")
     private RoleType roleType;

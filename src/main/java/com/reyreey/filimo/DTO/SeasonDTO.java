@@ -1,5 +1,9 @@
 package com.reyreey.filimo.DTO;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.validation.constraints.NotNull;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,12 +14,16 @@ import java.util.List;
  * @created : 1/20/2025, Monday
  **/
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class SeasonDTO {
     private List<MediaItemDTO> episodes = new ArrayList<>();
+    @NotNull(message = "{notnull}")
     private String code;
     private String title;
     private String summary;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate releaseDate;
+    @NotNull(message = "{notnull}")
     private String tvSeries;
 
     public List<MediaItemDTO> getEpisodes() {

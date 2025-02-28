@@ -1,5 +1,7 @@
 package com.reyreey.filimo.DTO;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.reyreey.filimo.Model.Content.Genre;
 import jakarta.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Range;
@@ -14,12 +16,14 @@ import java.util.List;
  * @created : 1/14/2025, Tuesday
  **/
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class MediaItemDTO {
     private List<VideoDTO> videos = new ArrayList<>();
     private String code;
     @NotNull(message = "{notnull}")
     private String title;
     private String summary;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate releaseDate;
     private List<Genre> genres = new ArrayList<>();
     @Range(min = 0, max = 10 , message = "{rate.range}")
