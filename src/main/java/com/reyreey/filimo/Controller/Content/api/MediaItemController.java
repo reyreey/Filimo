@@ -40,6 +40,7 @@ public class MediaItemController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public void addMediaItem(MediaItem mediaItem){
+        //TODO: not worked because child objects(detail,personRoles,videos) is empty and not saved
         mediaItemService.insert(mediaItem);
     }
 
