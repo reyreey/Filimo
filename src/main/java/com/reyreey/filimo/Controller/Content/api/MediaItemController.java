@@ -22,11 +22,6 @@ public class MediaItemController {
     @Autowired
     private IMediaItemService mediaItemService;
 
-    @GetMapping(path = "/")
-    public String hello(){
-        return "Hello Reyreey!";
-    }
-
     @GetMapping(path = "/all")
     public List<MediaItem> getAllMediaItems(){
         return mediaItemService.findAll();
