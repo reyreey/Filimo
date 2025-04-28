@@ -39,7 +39,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
  **/
 
 @WebMvcTest(controllers = MediaItemController2.class)
-public class MediaItemTest {
+public class MediaItemWebLayerTest {
 
     @Autowired
     private MockMvc mockMvc;
