@@ -36,7 +36,7 @@ public class SeasonController {
         return ResponseEntity.ok(createdSeason);
     }
 
-    @PostMapping(path = "/add-seasons")
+    @PostMapping(path = "/add-seasons/{tvSeriesID}")
     public ResponseEntity<List<SeasonDTO>> createSeasons(@Valid @RequestBody List<SeasonDTO> seasonDTOs,@PathVariable Long tvSeriesID){
 
         List<SeasonDTO> createdSeason = seasonService.createSeasons(seasonDTOs,tvSeriesID);
