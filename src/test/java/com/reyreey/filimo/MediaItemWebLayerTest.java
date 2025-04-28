@@ -47,9 +47,6 @@ public class MediaItemWebLayerTest {
     @MockitoBean
     private MediaItemService mediaItemService;
 
-    @MockitoBean
-    private IMediaItemService iMediaItemService;
-
     @Autowired
     private ObjectMapper objectMapper;
 
