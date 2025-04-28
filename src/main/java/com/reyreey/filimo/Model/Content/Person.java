@@ -12,10 +12,11 @@ import java.util.Set;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-@Table(name = "t_person",
-        uniqueConstraints = {
-                @UniqueConstraint(name = "person",columnNames = {"c_firstName","c_lastName"})
-                })
+@Table(name = "t_person"
+//      ,  uniqueConstraints = {
+//                @UniqueConstraint(name = "person",columnNames = {"c_firstName","c_lastName"})
+//                }
+                )
 public class Person extends BaseEntity {
     private String firstName;
     private String lastName;

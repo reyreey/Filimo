@@ -23,8 +23,8 @@ public class MediaItemController2 {
     private MediaItemService mediaItemService;
 
 
-    @PostMapping(path = "/add-media-item")
-    public ResponseEntity<MediaItemDTO> createMediaItem(@Valid@RequestBody MediaItemDTO mediaItemDTO,
+    @PostMapping(path = "/add-media-item/{seasonId}")
+    public ResponseEntity<MediaItemDTO> createMediaItem(@RequestBody MediaItemDTO mediaItemDTO,
                                                         @RequestParam(required = false) Long seasonId){
 
 
@@ -33,8 +33,8 @@ public class MediaItemController2 {
         return ResponseEntity.ok(createdMediaItem);
     }
 
-    @PostMapping(path = "/add-media-items")
-    public ResponseEntity<List<MediaItemDTO>> createMediaItems(@Valid@RequestBody List<MediaItemDTO> mediaItemDTOs,@RequestParam(required = false) Long seasonId){
+    @PostMapping(path = "/add-media-items/{seasonId}")
+    public ResponseEntity<List<MediaItemDTO>> createMediaItems(@RequestBody List<MediaItemDTO> mediaItemDTOs,@RequestParam(required = false) Long seasonId){
 
 
         List<MediaItemDTO> createdMediaItems = mediaItemService.createMediaItems(mediaItemDTOs,seasonId);

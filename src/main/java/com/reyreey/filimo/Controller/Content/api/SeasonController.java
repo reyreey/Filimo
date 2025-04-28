@@ -28,8 +28,8 @@ public class SeasonController {
     @Autowired
     private ISeasonService iSeasonService;
 
-    @PostMapping(path = "/add-season")
-    public ResponseEntity<SeasonDTO> createSeason(@Valid @RequestBody SeasonDTO seasonDTO, @PathVariable Long tvSeriesID){
+    @PostMapping(path = "/add-season/{tvSeriesID}")
+    public ResponseEntity<SeasonDTO> createSeason(@RequestBody SeasonDTO seasonDTO, @PathVariable Long tvSeriesID){
 
         SeasonDTO createdSeason = seasonService.createSeason(seasonDTO,tvSeriesID);
 
@@ -37,9 +37,10 @@ public class SeasonController {
     }
 
     @PostMapping(path = "/add-seasons/{tvSeriesID}")
-    public ResponseEntity<List<SeasonDTO>> createSeasons(@Valid @RequestBody List<SeasonDTO> seasonDTOs,@PathVariable Long tvSeriesID){
+    public ResponseEntity<List<SeasonDTO>> createSeasons(@RequestBody List<SeasonDTO> seasonDTOs,@PathVariable Long tvSeriesID){
 
         List<SeasonDTO> createdSeason = seasonService.createSeasons(seasonDTOs,tvSeriesID);
+        System.out.println(tvSeriesID);
 
         return ResponseEntity.ok(createdSeason);
     }
