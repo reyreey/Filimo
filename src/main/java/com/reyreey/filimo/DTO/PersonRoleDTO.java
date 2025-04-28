@@ -60,4 +60,47 @@ public class PersonRoleDTO {
     public String toString() {
         return firstName + " " + lastName + " (" + roleType + ")";
     }
+
+    public static final class PersonRoleDTOBuilder {
+        private @NotNull(message = "{notnull}") String firstName;
+        private @NotNull(message = "{notnull}") String lastName;
+        private LocalDate dateOfBirth;
+        private @NotNull(message = "{notnull}") RoleType roleType;
+
+        private PersonRoleDTOBuilder() {
+        }
+
+        public static PersonRoleDTOBuilder aPersonRoleDTO() {
+            return new PersonRoleDTOBuilder();
+        }
+
+        public PersonRoleDTOBuilder withFirstName(String firstName) {
+            this.firstName = firstName;
+            return this;
+        }
+
+        public PersonRoleDTOBuilder withLastName(String lastName) {
+            this.lastName = lastName;
+            return this;
+        }
+
+        public PersonRoleDTOBuilder withDateOfBirth(LocalDate dateOfBirth) {
+            this.dateOfBirth = dateOfBirth;
+            return this;
+        }
+
+        public PersonRoleDTOBuilder withRoleType(RoleType roleType) {
+            this.roleType = roleType;
+            return this;
+        }
+
+        public PersonRoleDTO build() {
+            PersonRoleDTO personRoleDTO = new PersonRoleDTO();
+            personRoleDTO.setFirstName(firstName);
+            personRoleDTO.setLastName(lastName);
+            personRoleDTO.setDateOfBirth(dateOfBirth);
+            personRoleDTO.setRoleType(roleType);
+            return personRoleDTO;
+        }
+    }
 }

@@ -1,4 +1,4 @@
-package com.reyreey.filimo;
+package com.reyreey.filimo.WebLayer;
 
 import com.reyreey.filimo.Controller.Content.api.MediaItemController2;
 import com.reyreey.filimo.DTO.MediaItemDTO;

@@ -103,4 +103,81 @@ public class MediaItemDTO {
         this.season = season;
     }
 
+    public static final class MediaItemDTOBuilder {
+        private List<VideoDTO> videos;
+        private String code;
+        private @NotNull(message = "{notnull}") String title;
+        private String summary;
+        private LocalDate releaseDate;
+        private List<Genre> genres;
+        private @Range(min = 0, max = 10, message = "{rate.range}") double rate;
+        private List<PersonRoleDTO> personRoles;
+        private String season;
+
+        private MediaItemDTOBuilder() {
+        }
+
+        public static MediaItemDTOBuilder aMediaItemDTO() {
+            return new MediaItemDTOBuilder();
+        }
+
+        public MediaItemDTOBuilder withVideos(List<VideoDTO> videos) {
+            this.videos = videos;
+            return this;
+        }
+
+        public MediaItemDTOBuilder withCode(String code) {
+            this.code = code;
+            return this;
+        }
+
+        public MediaItemDTOBuilder withTitle(String title) {
+            this.title = title;
+            return this;
+        }
+
+        public MediaItemDTOBuilder withSummary(String summary) {
+            this.summary = summary;
+            return this;
+        }
+
+        public MediaItemDTOBuilder withReleaseDate(LocalDate releaseDate) {
+            this.releaseDate = releaseDate;
+            return this;
+        }
+
+        public MediaItemDTOBuilder withGenres(List<Genre> genres) {
+            this.genres = genres;
+            return this;
+        }
+
+        public MediaItemDTOBuilder withRate(double rate) {
+            this.rate = rate;
+            return this;
+        }
+
+        public MediaItemDTOBuilder withPersonRoles(List<PersonRoleDTO> personRoles) {
+            this.personRoles = personRoles;
+            return this;
+        }
+
+        public MediaItemDTOBuilder withSeason(String season) {
+            this.season = season;
+            return this;
+        }
+
+        public MediaItemDTO build() {
+            MediaItemDTO mediaItemDTO = new MediaItemDTO();
+            mediaItemDTO.setVideos(videos);
+            mediaItemDTO.setCode(code);
+            mediaItemDTO.setTitle(title);
+            mediaItemDTO.setSummary(summary);
+            mediaItemDTO.setReleaseDate(releaseDate);
+            mediaItemDTO.setGenres(genres);
+            mediaItemDTO.setRate(rate);
+            mediaItemDTO.setPersonRoles(personRoles);
+            mediaItemDTO.setSeason(season);
+            return mediaItemDTO;
+        }
+    }
 }

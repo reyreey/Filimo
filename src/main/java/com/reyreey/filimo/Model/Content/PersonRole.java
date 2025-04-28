@@ -59,4 +59,40 @@ public class PersonRole extends BaseEntity {
     public String toString() {
         return person.toString() + " - " + roleType;
     }
+
+    public static final class PersonRoleBuilder {
+        private Person person;
+        private RoleType roleType;
+        private List<MediaItem> mediaItemList;
+
+        private PersonRoleBuilder() {
+        }
+
+        public static PersonRoleBuilder aPersonRole() {
+            return new PersonRoleBuilder();
+        }
+
+        public PersonRoleBuilder withPerson(Person person) {
+            this.person = person;
+            return this;
+        }
+
+        public PersonRoleBuilder withRoleType(RoleType roleType) {
+            this.roleType = roleType;
+            return this;
+        }
+
+        public PersonRoleBuilder withMediaItemList(List<MediaItem> mediaItemList) {
+            this.mediaItemList = mediaItemList;
+            return this;
+        }
+
+        public PersonRole build() {
+            PersonRole personRole = new PersonRole();
+            personRole.setPerson(person);
+            personRole.setRoleType(roleType);
+            personRole.setMediaItemList(mediaItemList);
+            return personRole;
+        }
+    }
 }

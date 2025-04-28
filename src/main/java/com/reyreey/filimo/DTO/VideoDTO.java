@@ -31,4 +31,34 @@ public class VideoDTO {
     public void setQuality(Quality quality) {
         this.quality = quality;
     }
+
+    public static final class VideoDTOBuilder {
+        private @URL(message = "{url}")
+        @NotNull(message = "{notnull}") String url;
+        private Quality quality;
+
+        private VideoDTOBuilder() {
+        }
+
+        public static VideoDTOBuilder aVideoDTO() {
+            return new VideoDTOBuilder();
+        }
+
+        public VideoDTOBuilder withUrl(String url) {
+            this.url = url;
+            return this;
+        }
+
+        public VideoDTOBuilder withQuality(Quality quality) {
+            this.quality = quality;
+            return this;
+        }
+
+        public VideoDTO build() {
+            VideoDTO videoDTO = new VideoDTO();
+            videoDTO.setUrl(url);
+            videoDTO.setQuality(quality);
+            return videoDTO;
+        }
+    }
 }

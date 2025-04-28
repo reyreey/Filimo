@@ -65,4 +65,47 @@ public class Person extends BaseEntity {
     public String toString() {
         return firstName + " " + lastName;
     }
+
+    public static final class PersonBuilder {
+        private String firstName;
+        private String lastName;
+        private LocalDate dateOfBirth;
+        private List<PersonRole> personRoles;
+
+        private PersonBuilder() {
+        }
+
+        public static PersonBuilder aPerson() {
+            return new PersonBuilder();
+        }
+
+        public PersonBuilder withFirstName(String firstName) {
+            this.firstName = firstName;
+            return this;
+        }
+
+        public PersonBuilder withLastName(String lastName) {
+            this.lastName = lastName;
+            return this;
+        }
+
+        public PersonBuilder withDateOfBirth(LocalDate dateOfBirth) {
+            this.dateOfBirth = dateOfBirth;
+            return this;
+        }
+
+        public PersonBuilder withPersonRoles(List<PersonRole> personRoles) {
+            this.personRoles = personRoles;
+            return this;
+        }
+
+        public Person build() {
+            Person person = new Person();
+            person.setFirstName(firstName);
+            person.setLastName(lastName);
+            person.setDateOfBirth(dateOfBirth);
+            person.setPersonRoles(personRoles);
+            return person;
+        }
+    }
 }
