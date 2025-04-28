@@ -4,7 +4,6 @@ import com.reyreey.filimo.Controller.Content.api.MediaItemController2;
 import com.reyreey.filimo.DTO.MediaItemDTO;
 import com.reyreey.filimo.Model.Content.*;
 import com.reyreey.filimo.Model.Content.Factory.ContentDetailFactory;
-import com.reyreey.filimo.Service.Content.IMediaItemService;
 import com.reyreey.filimo.Service.Content.Impl.MediaItemService;
 import com.reyreey.filimo.Utill.CSVToDTO.Mapper.MediaItemMapper;
 import org.junit.jupiter.api.Test;
